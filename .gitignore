@@ -113,3 +113,4 @@ proj.win32/Debug.*/
 proj.win32/Release.*/
 
 # others
+/proj.ios_mac/DerivedData

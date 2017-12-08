@@ -1,20 +1,28 @@
-#ifndef __HELLOWORLD_SCENE_H__
-#define __HELLOWORLD_SCENE_H__
+//
+//  SCGame.h
+//  nirgal
+//
+//  Created by Timothy Raveling on 12/8/17.
+//
+//
+
+#ifndef __SCGame__
+#define __SCGame__
 
 #include "cocos2d.h"
 
-class HelloWorld : public cocos2d::Layer
+class SCGame : public cocos2d::Layer
 {
 public:
     static cocos2d::Scene* createScene();
-
+    
     virtual bool init();
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
     // implement the "static create()" method manually
-    CREATE_FUNC(HelloWorld);
+    CREATE_FUNC(SCGame);
 };
 
-#endif // __HELLOWORLD_SCENE_H__
+#endif /* defined(__SCGame__) */
