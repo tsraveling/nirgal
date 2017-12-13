@@ -10,6 +10,9 @@
 #define __SCGame__
 
 #include "cocos2d.h"
+#include "Map.h"
+
+#define GAME_LOOP_INTERVAL  1.0f
 
 class SCGame : public cocos2d::Layer
 {
@@ -18,8 +21,17 @@ public:
     
     virtual bool init();
     
+    Map map;
+    
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
+    
+    // Game loop manager
+    void update(float) override;
+    
+    // Game loop itself
+    float timeElapsed;
+    void tick();
     
     // implement the "static create()" method manually
     CREATE_FUNC(SCGame);

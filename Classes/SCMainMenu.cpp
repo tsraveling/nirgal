@@ -51,5 +51,5 @@ bool SCMainMenu::init()
 void SCMainMenu::goToGameScene(cocos2d::Ref *sender) {
     
     auto scene = SCGame::createScene();
-    Director::getInstance()->replaceScene(scene);
+    Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }

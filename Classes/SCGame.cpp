@@ -37,31 +37,45 @@ bool SCGame::init()
     }
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
+    int xs = int(visibleSize.width);
+    int ys = int(visibleSize.height);
+    cocos2d::log("visible size is %d by %d",xs,ys);
+    
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
     /////////////////////////////
     // 1. Scene layout
     
-    // add a label shows "Hello World"
-    // create and initialize a label
+    SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+    cache->addSpriteFramesWithFile("res/terrain/map-test.plist");
     
-    auto label = Label::createWithTTF("Hello World", "fonts/Socket.ttf", 24);
+    for (int x=0; x<24; x++) {
+        for (int y=0; y<16; y++) {
+            auto frame_name = this->map.floorFrameForTile(x, y);
+            
+            Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
+            sprite->setPosition((float(x)*64) + 32, (float(y)*64) + 32);
+            this->addChild(sprite);
+        }
+    }
     
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
-    
-    // add the label as a child to this layer
-    this->addChild(label, 1);
-    
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-    
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    // This is a looping node
+    this->scheduleUpdate();
     
     return true;
+}
+
+void SCGame::tick() {
+    
+    cocos2d::log("tick.");
+}
+
+void SCGame::update(float delta) {
+    
+    this->timeElapsed += delta;
+    while (this->timeElapsed >= GAME_LOOP_INTERVAL) {
+        
+        this->timeElapsed -= GAME_LOOP_INTERVAL;
+        this->tick();
+    }
 }

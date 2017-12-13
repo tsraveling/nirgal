@@ -11,6 +11,8 @@
 		03A53A7E1FDB3D410053F265 /* SCGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A7B1FDB3D390053F265 /* SCGame.cpp */; };
 		03A53A811FDB3D500053F265 /* SCMainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A801FDB3D500053F265 /* SCMainMenu.cpp */; };
 		03A53A821FDB3D520053F265 /* SCMainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A801FDB3D500053F265 /* SCMainMenu.cpp */; };
+		03C568BF1FE1D1F400DA7D6A /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03C568BD1FE1D1F400DA7D6A /* Map.cpp */; };
+		03C568C11FE1D26500DA7D6A /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03C568BD1FE1D1F400DA7D6A /* Map.cpp */; };
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -117,6 +119,8 @@
 		03A53A7C1FDB3D390053F265 /* SCGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGame.h; sourceTree = "<group>"; };
 		03A53A7F1FDB3D500053F265 /* SCMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCMainMenu.h; sourceTree = "<group>"; };
 		03A53A801FDB3D500053F265 /* SCMainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCMainMenu.cpp; sourceTree = "<group>"; };
+		03C568BD1FE1D1F400DA7D6A /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		03C568BE1FE1D1F400DA7D6A /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -252,6 +256,8 @@
 		03A53A831FDB3D760053F265 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				03C568BD1FE1D1F400DA7D6A /* Map.cpp */,
+				03C568BE1FE1D1F400DA7D6A /* Map.h */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				03A53A811FDB3D500053F265 /* SCMainMenu.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				03C568BF1FE1D1F400DA7D6A /* Map.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,6 +572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				03C568C11FE1D26500DA7D6A /* Map.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				03A53A7E1FDB3D410053F265 /* SCGame.cpp in Sources */,
 				03A53A821FDB3D520053F265 /* SCMainMenu.cpp in Sources */,
