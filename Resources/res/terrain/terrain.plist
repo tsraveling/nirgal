@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>floor.png</key>
+            <key>ground_mars.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-00.png</key>
+            <key>ground_metal.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,67 +34,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-01.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,-23}</string>
-                <key>spriteSize</key>
-                <string>{128,82}</string>
-                <key>spriteSourceSize</key>
-                <string>{128,128}</string>
-                <key>textureRect</key>
-                <string>{{1,131},{128,82}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>wall-02.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{23,-23}</string>
-                <key>spriteSize</key>
-                <string>{82,82}</string>
-                <key>spriteSourceSize</key>
-                <string>{128,128}</string>
-                <key>textureRect</key>
-                <string>{{131,131},{82,82}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>wall-03.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{34,128}</string>
-                <key>spriteSourceSize</key>
-                <string>{128,128}</string>
-                <key>textureRect</key>
-                <string>{{215,131},{34,128}}</string>
-                <key>textureRotated</key>
-                <true/>
-            </dict>
-            <key>wall-04.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{34,34}</string>
-                <key>spriteSourceSize</key>
-                <string>{128,128}</string>
-                <key>textureRect</key>
-                <string>{{345,131},{34,34}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>wall-05.png</key>
+            <key>ground_pavement.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -109,6 +49,36 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>wall_metal_center.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{34,34}</string>
+                <key>spriteSourceSize</key>
+                <string>{128,128}</string>
+                <key>textureRect</key>
+                <string>{{427,1},{34,34}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall_metal_segment.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{34,128}</string>
+                <key>spriteSourceSize</key>
+                <string>{128,128}</string>
+                <key>textureRect</key>
+                <string>{{391,1},{34,128}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -119,13 +89,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>map-test.png</string>
+            <string>terrain.png</string>
             <key>size</key>
-            <string>{390,214}</string>
+            <string>{462,130}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:23da74b4b7c8f3a6ede615f76a687c6e:944eb4ad00d28faea0f51f7e3eed0e37:1f52cd4e4c5bd92c40eb62ddfd507524$</string>
+            <string>$TexturePacker:SmartUpdate:109f6123b3e7e62498b86efd705e85ac:a4575afbcf001b4dccdc2999223268e5:abfad418824586571e33008575221999$</string>
             <key>textureFileName</key>
-            <string>map-test.png</string>
+            <string>terrain.png</string>
         </dict>
     </dict>
 </plist>

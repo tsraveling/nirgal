@@ -9,7 +9,33 @@
 #include "SCGame.h"
 USING_NS_CC;
 
-#pragma mark - Public methods
+#pragma mark - Rendering
+
+void SCGame::updateMapContents(){
+    for (int x=0; x<MAP_XS; x++) {
+        for (int y=0; y<MAP_YS; y++) {
+            
+            auto sprite = this->tileSprites[x][y];
+            if (sprite->getTag() != int(this->map.grid[x][y])) {
+                
+                auto frame_name = this->map.floorFrameForTile(x, y);
+                sprite->setSpriteFrame(frame_name);
+                sprite->setTag(int(this->map.grid[x][y]));
+            }
+        }
+    }
+}
+
+#pragma mark - Game logic
+
+void SCGame::tick() {
+    
+    this->updateMapContents();
+}
+
+#pragma mark - UI Logic
+
+#pragma mark - Initialization
 
 Scene* SCGame::createScene()
 {
@@ -43,34 +69,107 @@ bool SCGame::init()
     
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
+    // Set up the map layer
+    this->mapLayer = cocos2d::Layer::create();
+    this->mapLayer->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+    this->addChild(this->mapLayer);
+    
     /////////////////////////////
     // 1. Scene layout
     
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-    cache->addSpriteFramesWithFile("res/terrain/map-test.plist");
+    cache->addSpriteFramesWithFile("res/terrain/terrain.plist");
+    cache->addSpriteFramesWithFile("res/terrain/mars-wall.plist");
     
-    for (int x=0; x<24; x++) {
-        for (int y=0; y<16; y++) {
+    // Set up the terrain tiles
+    for (int x=0; x < MAP_XS; x++) {
+        for (int y=0; y < MAP_YS; y++) {
             auto frame_name = this->map.floorFrameForTile(x, y);
             
             Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
             sprite->setPosition((float(x)*64) + 32, (float(y)*64) + 32);
-            this->addChild(sprite);
+            sprite->setTag(int(this->map.grid[x][y]));
+            
+            this->mapLayer->addChild(sprite);
+            this->tileSprites[x][y] = sprite;
         }
     }
     
+    // Set up the wall tiles
+    for (int x=0; x < MAP_XS * 2; x++) {
+        for (int y = 0; y < MAP_YS * 2; y++) {
+            
+            if (x % 2 != 0 || y % 2 != 0) {
+                
+                
+                Sprite *sprite = Sprite::createWithSpriteFrameName("wall_metal_segment.png");
+                sprite->setPosition((float(x)*32) + 32, (float(y)*32) + 32);
+                sprite->setTag(int(this->map.grid[x][y]));
+                
+                // Hide unused wall segments
+                if (this->map.wallGrid[x][y] == empty) {
+                    sprite->setVisible(false);
+                    sprite->pause();
+                }
+                
+                if (y % 2 != 0)
+                    sprite->setRotation(90);
+                
+                this->mapLayer->addChild(sprite);
+                this->wallSprites[x][y] = sprite;
+            }
+        }
+    }
+
     // This is a looping node
     this->scheduleUpdate();
+    
+    // Get keyboard input
+    auto eventListener = EventListenerKeyboard::create();
+    
+    eventListener->onKeyPressed = CC_CALLBACK_2(SCGame::keyPressed, this);
+    eventListener->onKeyReleased = CC_CALLBACK_2(SCGame::keyReleased, this);
+    
+    this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener,this);
     
     return true;
 }
 
-void SCGame::tick() {
+#pragma mark - Input Methods
+
+void SCGame::keyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+{
+    printf("Depressed %d\n", int(keyCode));
     
-    cocos2d::log("tick.");
+    if (int(keyCode) < 256) {
+        this->keyHeldDown[int(keyCode)] = true;
+    }
 }
 
+void SCGame::keyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+{
+    printf("Released %d\n", int(keyCode));
+    
+    if (int(keyCode) < 256) {
+        this->keyHeldDown[int(keyCode)] = false;
+    }
+}
+
+#pragma mark - Cocos2d methods
+
 void SCGame::update(float delta) {
+    
+    // Map movement
+    float map_velocity = 800 * delta;
+    Vec2 loc = this->mapLayer->getPosition();
+    if (this->keyHeldDown[146])
+        this->mapLayer->setPosition(loc.x, loc.y -= map_velocity);
+    if (this->keyHeldDown[127])
+        this->mapLayer->setPosition(loc.x -= map_velocity, loc.y);
+    if (this->keyHeldDown[142])
+        this->mapLayer->setPosition(loc.x, loc.y +=map_velocity);
+    if (this->keyHeldDown[124])
+        this->mapLayer->setPosition(loc.x += map_velocity, loc.y);
     
     this->timeElapsed += delta;
     while (this->timeElapsed >= GAME_LOOP_INTERVAL) {
