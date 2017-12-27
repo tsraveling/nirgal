@@ -46,15 +46,17 @@ public:
     WallType wallGrid[MAP_XS * 2][MAP_YS * 2];
     
     // Helper Variables
-    void setTile(int x, int y, TerrainType newTile);
     
     char mod = 4;
+    string baseTile[MAP_XS][MAP_YS];
+    string overlayTile[MAP_XS][MAP_YS];
     
     // Logic Functions
     void randomizeOne();
     
     // Helper Functions
-    string floorFrameForTile(int x, int y);
+    void setTile(int x, int y, TerrainType newTile);
+    void regenerateTiles(int x1, int y1, int x2, int y2);
     static string frameForTile(TerrainType tile);
     
     // Initialization

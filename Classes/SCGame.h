@@ -28,6 +28,7 @@ public:
     
     // UI elements
     cocos2d::Sprite *tileSprites[MAP_XS][MAP_YS];   // Created sprites will be stored here for map update purposes
+    cocos2d::Sprite *overlaySprites[MAP_XS][MAP_YS];
     cocos2d::Sprite *wallSprites[MAP_XS * 2][MAP_YS * 2];
     cocos2d::Layer *mapLayer;
     

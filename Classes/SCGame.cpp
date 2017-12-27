@@ -18,7 +18,7 @@ void SCGame::updateMapContents(){
             auto sprite = this->tileSprites[x][y];
             if (sprite->getTag() != int(this->map.grid[x][y])) {
                 
-                auto frame_name = this->map.floorFrameForTile(x, y);
+                auto frame_name = this->map.baseTile[x][y];
                 sprite->setSpriteFrame(frame_name);
                 sprite->setTag(int(this->map.grid[x][y]));
             }
@@ -81,17 +81,36 @@ bool SCGame::init()
     cache->addSpriteFramesWithFile("res/terrain/terrain.plist");
     cache->addSpriteFramesWithFile("res/terrain/mars-wall.plist");
     
+    // Generate the initial map layout
+    this->map.regenerateTiles(0, 0, MAP_XS - 1, MAP_YS - 1);
+    
     // Set up the terrain tiles
     for (int x=0; x < MAP_XS; x++) {
         for (int y=0; y < MAP_YS; y++) {
-            auto frame_name = this->map.floorFrameForTile(x, y);
             
+            // Create the base tile
+            auto frame_name = this->map.baseTile[x][y];
             Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
             sprite->setPosition((float(x)*64) + 32, (float(y)*64) + 32);
             sprite->setTag(int(this->map.grid[x][y]));
-            
             this->mapLayer->addChild(sprite);
             this->tileSprites[x][y] = sprite;
+            
+            // Create the overlay tile
+            auto overlay_name = this->map.overlayTile[x][y];
+            Sprite *overlay = Sprite::createWithSpriteFrameName(overlay_name.length() > 0 ? overlay_name : "mars-wall-07.png");
+            overlay->setPosition((float(x)*64) + 32, (float(y)*64) + 32);
+            overlay->setTag(int(this->map.grid[x][y]));
+            
+            // Hide unused overlay segments
+            if (overlay_name.length() == 0) {
+                overlay->setVisible(false);
+                overlay->pause();
+            }
+            
+            this->mapLayer->addChild(overlay);
+            this->overlaySprites[x][y] = overlay;
+            
         }
     }
     
