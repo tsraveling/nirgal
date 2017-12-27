@@ -9,6 +9,7 @@
 #define Map_hpp
 
 #include <stdio.h>
+#include "DataStore.hpp"
 
 using namespace std;
 

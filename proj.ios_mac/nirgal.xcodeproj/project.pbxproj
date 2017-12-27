@@ -17,6 +17,12 @@
 		03CCBAA71FF415CD001D30F4 /* FractalNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAA21FF415CD001D30F4 /* FractalNoise.cpp */; };
 		03CCBAA81FF415CD001D30F4 /* Perlin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAA51FF415CD001D30F4 /* Perlin.cpp */; };
 		03CCBAA91FF415CD001D30F4 /* Perlin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAA51FF415CD001D30F4 /* Perlin.cpp */; };
+		03CCBAAC1FF45AAA001D30F4 /* MapObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAAA1FF45AAA001D30F4 /* MapObject.cpp */; };
+		03CCBAAD1FF45AAA001D30F4 /* MapObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAAA1FF45AAA001D30F4 /* MapObject.cpp */; };
+		03CCBAB11FF45BBF001D30F4 /* ObjectDesign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */; };
+		03CCBAB21FF45BBF001D30F4 /* ObjectDesign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */; };
+		03CCBABA1FF4672C001D30F4 /* DataStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAB81FF4672C001D30F4 /* DataStore.cpp */; };
+		03CCBABB1FF4672C001D30F4 /* DataStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAB81FF4672C001D30F4 /* DataStore.cpp */; };
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -129,6 +135,13 @@
 		03CCBAA31FF415CD001D30F4 /* Perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perlin.h; sourceTree = "<group>"; };
 		03CCBAA41FF415CD001D30F4 /* FractalNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FractalNoise.h; sourceTree = "<group>"; };
 		03CCBAA51FF415CD001D30F4 /* Perlin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perlin.cpp; sourceTree = "<group>"; };
+		03CCBAAA1FF45AAA001D30F4 /* MapObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MapObject.cpp; sourceTree = "<group>"; };
+		03CCBAAB1FF45AAA001D30F4 /* MapObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapObject.hpp; sourceTree = "<group>"; };
+		03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectDesign.cpp; sourceTree = "<group>"; };
+		03CCBAB01FF45BBF001D30F4 /* ObjectDesign.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectDesign.hpp; sourceTree = "<group>"; };
+		03CCBAB31FF45D18001D30F4 /* ObjectType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectType.h; sourceTree = "<group>"; };
+		03CCBAB81FF4672C001D30F4 /* DataStore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataStore.cpp; sourceTree = "<group>"; };
+		03CCBAB91FF4672C001D30F4 /* DataStore.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataStore.hpp; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -261,13 +274,16 @@
 			name = "Main Game";
 			sourceTree = "<group>";
 		};
-		03A53A831FDB3D760053F265 /* Data */ = {
+		03A53A831FDB3D760053F265 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				03CCBAAE1FF45BAA001D30F4 /* Populated Data */,
 				03C568BD1FE1D1F400DA7D6A /* Map.cpp */,
 				03C568BE1FE1D1F400DA7D6A /* Map.h */,
+				03CCBAAA1FF45AAA001D30F4 /* MapObject.cpp */,
+				03CCBAAB1FF45AAA001D30F4 /* MapObject.hpp */,
 			);
-			name = Data;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		03CCBA9F1FF415AA001D30F4 /* Util */ = {
@@ -287,6 +303,18 @@
 				03CCBAA31FF415CD001D30F4 /* Perlin.h */,
 			);
 			name = PerlinNoise;
+			sourceTree = "<group>";
+		};
+		03CCBAAE1FF45BAA001D30F4 /* Populated Data */ = {
+			isa = PBXGroup;
+			children = (
+				03CCBAB31FF45D18001D30F4 /* ObjectType.h */,
+				03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */,
+				03CCBAB01FF45BBF001D30F4 /* ObjectDesign.hpp */,
+				03CCBAB81FF4672C001D30F4 /* DataStore.cpp */,
+				03CCBAB91FF4672C001D30F4 /* DataStore.hpp */,
+			);
+			name = "Populated Data";
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* ios */ = {
@@ -381,7 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				03CCBA9F1FF415AA001D30F4 /* Util */,
-				03A53A831FDB3D760053F265 /* Data */,
+				03A53A831FDB3D760053F265 /* Model */,
 				03A53A701FDB3CB50053F265 /* View Hierarchy */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
@@ -588,7 +616,10 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				03CCBAAC1FF45AAA001D30F4 /* MapObject.cpp in Sources */,
 				03A53A811FDB3D500053F265 /* SCMainMenu.cpp in Sources */,
+				03CCBABA1FF4672C001D30F4 /* DataStore.cpp in Sources */,
+				03CCBAB11FF45BBF001D30F4 /* ObjectDesign.cpp in Sources */,
 				03CCBAA61FF415CD001D30F4 /* FractalNoise.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				03C568BF1FE1D1F400DA7D6A /* Map.cpp in Sources */,
@@ -602,8 +633,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				03CCBAA71FF415CD001D30F4 /* FractalNoise.cpp in Sources */,
+				03CCBABB1FF4672C001D30F4 /* DataStore.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				03CCBAB21FF45BBF001D30F4 /* ObjectDesign.cpp in Sources */,
 				03C568C11FE1D26500DA7D6A /* Map.cpp in Sources */,
+				03CCBAAD1FF45AAA001D30F4 /* MapObject.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				03CCBAA91FF415CD001D30F4 /* Perlin.cpp in Sources */,
 				03A53A7E1FDB3D410053F265 /* SCGame.cpp in Sources */,

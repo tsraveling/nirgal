@@ -47,8 +47,6 @@ public:
     
 private:
     
-    // Map management functions
-    void updateMapContents();
     
 };
 

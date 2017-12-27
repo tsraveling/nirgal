@@ -9,28 +9,11 @@
 #include "SCGame.h"
 USING_NS_CC;
 
-#pragma mark - Rendering
-
-void SCGame::updateMapContents(){
-    for (int x=0; x<MAP_XS; x++) {
-        for (int y=0; y<MAP_YS; y++) {
-            
-            auto sprite = this->tileSprites[x][y];
-            if (sprite->getTag() != int(this->map.grid[x][y])) {
-                
-                auto frame_name = this->map.baseTile[x][y];
-                sprite->setSpriteFrame(frame_name);
-                sprite->setTag(int(this->map.grid[x][y]));
-            }
-        }
-    }
-}
-
 #pragma mark - Game logic
 
 void SCGame::tick() {
     
-    this->updateMapContents();
+    
 }
 
 #pragma mark - UI Logic
@@ -74,12 +57,15 @@ bool SCGame::init()
     this->mapLayer->setPosition(visibleSize.width / 2, visibleSize.height / 2);
     this->addChild(this->mapLayer);
     
-    /////////////////////////////
-    // 1. Scene layout
+    // Load the initial sprite sheets
     
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("res/terrain/terrain.plist");
     cache->addSpriteFramesWithFile("res/terrain/mars-wall.plist");
+    cache->addSpriteFramesWithFile("res/objects/lander-assets.plist");
+    
+    // Load the object data
+    DataStore::populateData();
     
     // Generate the initial map layout
     this->map.regenerateTiles(0, 0, MAP_XS - 1, MAP_YS - 1);
