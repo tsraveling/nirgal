@@ -54,7 +54,14 @@ Map::Map() {
             
             // Keep track of the range so we can chop it off in the middle
             if (noise < min) min = noise;
-            if (noise > max) max = noise;
+            if (noise > max) {
+                max = noise;
+                
+                if (x < MAP_XS - 16 && y < MAP_YS - 16 && x > 16 && y > 16) {
+                    startX = x;
+                    startY = y;
+                }
+            }
         }
     }
     
@@ -69,21 +76,96 @@ Map::Map() {
             if (noise_grid[x][y] < threshold) {
                 this->grid[x][y] = solidRock;
             }
+            
+            if (x == startX || y == startY) {
+                this->grid[x][y] = metalFloor;
+            }
         }
     }
     
-    // This will eventually insert the lander
-    string insert_block[4] = {"1100",
-                              "1100",
-                              "0001",
-                              "0110"};
-    for (int x=0; x<4; x++) {
-        for (int y=0; y<4; y++) {
+    // This template will be used for the lander
+    int lander_x = startX - 4;
+    int lander_y = startY - 4;
+    
+    string insert_block[8] = {"00000000",
+                              "00111100",
+                              "01111110",
+                              "01111110",
+                              "01111110",
+                              "01111110",
+                              "00111100",
+                              "00000000"};
+    
+    // Modify the terrain and add the wall
+    for (int x=0; x<8; x++) {
+        for (int y=0; y<8; y++) {
             auto string = insert_block[y];
             auto val = string[x];
-            this->grid[x][y] = (val == '0') ? marsDirt : solidRock;
+            this->grid[lander_x + x][lander_y + y] = (val == '0') ? marsDirt : metalFloor;
+            
+            if (x < 7 && val != string[x + 1]) {
+                this->wallGrid[((lander_x + x) * 2) + 1][(lander_y + y) * 2] = metalWall;
+            }
+            
+            if (y < 7 && val != insert_block[y + 1][x]) {
+                this->wallGrid[(lander_x + x) * 2][((lander_y + y) * 2) + 1] = metalWall;
+            }
         }
     }
+    
+    // Now add the objects
+    
+    // Suitports along the top
+    this->addObject(new MapObject(suitPort, lander_x + 3, lander_y + 7, orientNormal));
+    this->addObject(new MapObject(suitPort, lander_x + 4, lander_y + 7, orientNormal));
+    
+    // Landing struts
+    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 6, orient270));
+    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 6, orientNormal));
+    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 1, orient180));
+    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 1, orient90));
+    
+    // Water and food and oxygen stations
+    this->addObject(new MapObject(waterStation, lander_x + 2, lander_y + 6, orientNormal));
+    this->addObject(new MapObject(smallFoodStation, lander_x + 5, lander_y + 6, orientNormal));
+    this->addObject(new MapObject(atmosphereTank, lander_x + 1, lander_y + 5, orientNormal));
+    
+    // Crash couches
+    this->addObject(new MapObject(crashCouch, lander_x + 2, lander_y + 4, orientNormal));
+    this->addObject(new MapObject(crashCouch, lander_x + 3, lander_y + 5, orientNormal));
+    this->addObject(new MapObject(crashCouch, lander_x + 4, lander_y + 5, orientNormal));
+    this->addObject(new MapObject(crashCouch, lander_x + 5, lander_y + 4, orientNormal));
+    
+    // Computers
+    this->addObject(new MapObject(landingComputer, lander_x + 1, lander_y + 2, orient270));
+    this->addObject(new MapObject(landingComputer, lander_x + 3, lander_y + 1, orient180));
+    this->addObject(new MapObject(landingComputer, lander_x + 5, lander_y + 1, orient180));
+    this->addObject(new MapObject(landingComputer, lander_x + 6, lander_y + 3, orient90));
+    
+    // Crates
+    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 2, orientNormal));
+    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 3, orientNormal));
+    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 4, orientNormal));
+    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 5, orientNormal));
+    
+    // Solar Panels
+    this->addObject(new MapObject(landerSolarPanel, lander_x + 2, lander_y + 0, orientNormal));
+    this->addObject(new MapObject(landerSolarPanel, lander_x + 3, lander_y + 0, orientNormal));
+    this->addObject(new MapObject(landerSolarPanel, lander_x + 4, lander_y + 0, orientNormal));
+    this->addObject(new MapObject(landerSolarPanel, lander_x + 5, lander_y + 0, orientNormal));
+    
+    // Tanks
+    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 2, orientNormal));
+    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 3, orientNormal));
+    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 4, orientNormal));
+    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 5, orientNormal));
+}
+
+void Map::addObject(MapObject *object) {
+    this->objects.push_back(object);
+}
+
+void Map::removeObject(MapObject *object) {
 }
 
 void Map::regenerateTiles(int x1, int y1, int x2, int y2) {

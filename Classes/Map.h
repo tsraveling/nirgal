@@ -9,7 +9,9 @@
 #define Map_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "DataStore.hpp"
+#include "MapObject.hpp"
 
 using namespace std;
 
@@ -45,9 +47,10 @@ public:
     // Content Variables
     TerrainType grid[MAP_XS][MAP_XS];
     WallType wallGrid[MAP_XS * 2][MAP_YS * 2];
+    vector<MapObject*> objects;
+    int startX, startY;
     
     // Helper Variables
-    
     char mod = 4;
     string baseTile[MAP_XS][MAP_YS];
     string overlayTile[MAP_XS][MAP_YS];
@@ -56,6 +59,8 @@ public:
     void randomizeOne();
     
     // Helper Functions
+    void addObject(MapObject *object);
+    void removeObject(MapObject *object);
     void setTile(int x, int y, TerrainType newTile);
     void regenerateTiles(int x1, int y1, int x2, int y2);
     static string frameForTile(TerrainType tile);

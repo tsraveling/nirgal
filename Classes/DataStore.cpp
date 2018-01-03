@@ -45,6 +45,7 @@ void DataStore::populateData() {
             case landingComputer:
                 design->name = "Landing Computer";
                 design->baseSpriteName = "landingcomputer.png";
+                design->width = 2;
                 break;
                 
             case landingStrut:
@@ -70,6 +71,12 @@ void DataStore::populateData() {
             case suitPort:
                 design->name = "Suitport";
                 design->baseSpriteName = "suitport.png";
+                design->height = 2;
+                break;
+                
+            case landerLiquidTank:
+                design->name = "Liquid Tank";
+                design->baseSpriteName = "h2o.png";
                 break;
                 
             default:

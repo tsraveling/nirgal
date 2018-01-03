@@ -142,6 +142,7 @@
 		03CCBAB31FF45D18001D30F4 /* ObjectType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectType.h; sourceTree = "<group>"; };
 		03CCBAB81FF4672C001D30F4 /* DataStore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataStore.cpp; sourceTree = "<group>"; };
 		03CCBAB91FF4672C001D30F4 /* DataStore.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataStore.hpp; sourceTree = "<group>"; };
+		03F433211FFD866C004700AA /* Coord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Coord.h; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -308,6 +309,7 @@
 		03CCBAAE1FF45BAA001D30F4 /* Populated Data */ = {
 			isa = PBXGroup;
 			children = (
+				03F433211FFD866C004700AA /* Coord.h */,
 				03CCBAB31FF45D18001D30F4 /* ObjectType.h */,
 				03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */,
 				03CCBAB01FF45BBF001D30F4 /* ObjectDesign.hpp */,

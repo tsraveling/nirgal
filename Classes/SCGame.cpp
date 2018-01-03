@@ -16,6 +16,54 @@ void SCGame::tick() {
     
 }
 
+#pragma mark - Map interface
+
+void SCGame::addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation) {
+    
+    // Generate the object
+    MapObject *ob = new MapObject(t, x, y, orientation);
+    
+    // Add the sprite tuple
+    this->generateSpriteTupleForObject(ob);
+    
+    // Add the object to the map
+    this->map.addObject(ob);
+}
+
+void SCGame::generateObjectSprites() {
+    
+    for (MapObject *ob : this->map.objects) {
+        
+        this->generateSpriteTupleForObject(ob);
+    }
+}
+
+void SCGame::generateSpriteTupleForObject(MapObject *ob) {
+    
+    // TODO: Check for extant sprites
+    
+    // Add the sprite
+    string frame_name = ob->spriteName();
+    Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
+    Coord pos = ob->apparentPosition();
+    sprite->setPosition(pos.x, pos.y);
+    
+    if (ob->orientation == orient90)
+        sprite->setRotation(90);
+    
+    if (ob->orientation == orient180)
+        sprite->setRotation(180);
+    
+    if (ob->orientation == orient270)
+        sprite->setRotation(270);
+    
+    this->mapLayer->addChild(sprite);
+    
+    // Create and add the tuple
+    ObjectSprite os = ObjectSprite(ob, sprite);
+    this->objectSpritePairs.push_back(os);
+}
+
 #pragma mark - UI Logic
 
 #pragma mark - Initialization
@@ -66,6 +114,9 @@ bool SCGame::init()
     
     // Load the object data
     DataStore::populateData();
+    
+    // Lay out the lander in the terrain data
+    
     
     // Generate the initial map layout
     this->map.regenerateTiles(0, 0, MAP_XS - 1, MAP_YS - 1);
@@ -125,6 +176,9 @@ bool SCGame::init()
             }
         }
     }
+    
+    // Now we're going to generate the lander object sprites
+    this->generateObjectSprites();
 
     // This is a looping node
     this->scheduleUpdate();

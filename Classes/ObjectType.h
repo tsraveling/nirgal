@@ -8,7 +8,7 @@
 #ifndef ObjectType_h
 #define ObjectType_h
 
-#define kNumberOfObjectTypes    9
+#define kNumberOfObjectTypes    10
 
 enum ObjectType : char {
     
@@ -20,7 +20,8 @@ enum ObjectType : char {
     atmosphereTank = 5,
     smallFoodStation = 6,
     landerSolarPanel = 7,
-    suitPort = 8
+    suitPort = 8,
+    landerLiquidTank = 9
 };
 
 #endif /* ObjectType_h */

@@ -12,9 +12,13 @@
 #include "cocos2d.h"
 #include "Map.h"
 
+using namespace std;
+
 #define GAME_LOOP_INTERVAL  1.0f
 
 // Input
+
+typedef pair<MapObject*, cocos2d::Sprite*> ObjectSprite;
 
 class SCGame : public cocos2d::Layer
 {
@@ -25,12 +29,18 @@ public:
     // Variables
     Map map;                                        // Contains the map
     float timeElapsed;                              // Contains time elapsed for the update(_) function
+    vector<ObjectSprite> objectSpritePairs;
     
     // UI elements
     cocos2d::Sprite *tileSprites[MAP_XS][MAP_YS];   // Created sprites will be stored here for map update purposes
     cocos2d::Sprite *overlaySprites[MAP_XS][MAP_YS];
     cocos2d::Sprite *wallSprites[MAP_XS * 2][MAP_YS * 2];
     cocos2d::Layer *mapLayer;
+    
+    // Map interface functions
+    void addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation);
+    void generateObjectSprites();
+    void generateSpriteTupleForObject(MapObject *ob);
     
     // Functions
     void tick();                                    // Performs game logic

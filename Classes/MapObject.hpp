@@ -9,13 +9,14 @@
 #define MapObject_hpp
 
 #include <stdio.h>
-#include "ObjectDesign.hpp"
+#include "DataStore.hpp"
+#include "Coord.h"
 
 enum ObjectOrientation : int {
-    up = 0,
-    right = 1,
-    down = 2,
-    left = 3
+    orientNormal = 0,
+    orient90 = 1,
+    orient180 = 2,
+    orient270 = 3
 };
 
 class MapObject
@@ -29,6 +30,10 @@ public:
     
     // Initialization
     MapObject(ObjectType t, int x, int y, ObjectOrientation orientation);
+    
+    // Interface functions
+    string spriteName();
+    Coord apparentPosition();
 };
 
 #endif /* MapObject_hpp */
