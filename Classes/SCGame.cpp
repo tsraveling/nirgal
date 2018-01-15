@@ -124,7 +124,9 @@ bool SCGame::init()
     
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    // Set up the map layer
+    // 1. Set up the map layer
+    // -----------------------
+    
     this->mapLayer = cocos2d::Layer::create();
     
     auto start_x = float(this->map.startX) * -64;
@@ -209,8 +211,36 @@ bool SCGame::init()
     // Now we're going to generate the lander object sprites
     this->generateObjectSprites();
     
-    // Now generate the astronaut sprites findme
+    // Now generate the astronaut sprites
     this->generateAstronautSprites();
+    
+    // 2. Now set up the UI Layer
+    // --------------------------
+    
+    this->uiLayer = cocos2d::Layer::create();
+    
+    this->uiLayer->setPosition(0,0);
+    this->addChild(this->uiLayer);
+    
+    // Lay out the roster sprites
+    
+    float roster_y = visibleSize.height - 64;
+    float left = 32 + 10;
+    for (Astronaut *astronaut : this->map.astronauts) {
+        
+        // Create the roster sprite
+        string frame_name = astronaut->sprite();
+        Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
+        sprite->setPosition(left, roster_y);
+        this->uiLayer->addChild(sprite);
+        
+        // Create and add the tuple
+        AstronautSprite os = AstronautSprite(astronaut, sprite);
+        this->astronautRosterPairs.push_back(os);
+        
+        // Decrement y
+        roster_y -= (64 + 10);
+    }
 
     // This is a looping node
     this->scheduleUpdate();

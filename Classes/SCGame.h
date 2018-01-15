@@ -32,12 +32,14 @@ public:
     float timeElapsed;                              // Contains time elapsed for the update(_) function
     vector<ObjectSprite> objectSpritePairs;
     vector<AstronautSprite> astronautSpritePairs;
+    vector<AstronautSprite> astronautRosterPairs;
     
     // UI elements
     cocos2d::Sprite *tileSprites[MAP_XS][MAP_YS];   // Created sprites will be stored here for map update purposes
     cocos2d::Sprite *overlaySprites[MAP_XS][MAP_YS];
     cocos2d::Sprite *wallSprites[MAP_XS * 2][MAP_YS * 2];
     cocos2d::Layer *mapLayer;
+    cocos2d::Layer *uiLayer;
     
     // Map interface functions
     void addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation);
