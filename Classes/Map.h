@@ -58,7 +58,10 @@ public:
     string overlayTile[MAP_XS][MAP_YS];
     
     // Logic Functions
-    void randomizeOne();
+    void tick(float time);
+    
+    // AI Functions
+    bool isPassable(int x1, int y1, int x2, int y2);
     
     // Helper Functions
     void addObject(MapObject *object);

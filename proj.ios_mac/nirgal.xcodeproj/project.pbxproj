@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		033F035A200D621000E5ED63 /* AstronautGoal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F0358200D621000E5ED63 /* AstronautGoal.cpp */; };
+		033F035F200D681100E5ED63 /* AstronautAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F035D200D681100E5ED63 /* AstronautAction.cpp */; };
+		033F0360200D6F1800E5ED63 /* AstronautAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F035D200D681100E5ED63 /* AstronautAction.cpp */; };
+		033F0361200D6F1B00E5ED63 /* AstronautGoal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F0358200D621000E5ED63 /* AstronautGoal.cpp */; };
 		0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A7B1FDB3D390053F265 /* SCGame.cpp */; };
@@ -127,6 +131,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		033F0358200D621000E5ED63 /* AstronautGoal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautGoal.cpp; sourceTree = "<group>"; };
+		033F0359200D621000E5ED63 /* AstronautGoal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautGoal.hpp; sourceTree = "<group>"; };
+		033F035D200D681100E5ED63 /* AstronautAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautAction.cpp; sourceTree = "<group>"; };
+		033F035E200D681100E5ED63 /* AstronautAction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautAction.hpp; sourceTree = "<group>"; };
 		0395B9412009749400EE31E2 /* Astronaut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Astronaut.cpp; sourceTree = "<group>"; };
 		0395B9422009749400EE31E2 /* Astronaut.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Astronaut.hpp; sourceTree = "<group>"; };
 		03A53A7B1FDB3D390053F265 /* SCGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCGame.cpp; sourceTree = "<group>"; };
@@ -252,6 +260,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033F035C200D62F700E5ED63 /* Astronauts */ = {
+			isa = PBXGroup;
+			children = (
+				033F035D200D681100E5ED63 /* AstronautAction.cpp */,
+				033F035E200D681100E5ED63 /* AstronautAction.hpp */,
+				033F0358200D621000E5ED63 /* AstronautGoal.cpp */,
+				033F0359200D621000E5ED63 /* AstronautGoal.hpp */,
+				0395B9412009749400EE31E2 /* Astronaut.cpp */,
+				0395B9422009749400EE31E2 /* Astronaut.hpp */,
+			);
+			name = Astronauts;
+			sourceTree = "<group>";
+		};
 		03A53A701FDB3CB50053F265 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,13 +303,12 @@
 		03A53A831FDB3D760053F265 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				03CCBAAE1FF45BAA001D30F4 /* Populated Data */,
+				03CCBAAE1FF45BAA001D30F4 /* Designs */,
+				033F035C200D62F700E5ED63 /* Astronauts */,
 				03C568BD1FE1D1F400DA7D6A /* Map.cpp */,
 				03C568BE1FE1D1F400DA7D6A /* Map.h */,
 				03CCBAAA1FF45AAA001D30F4 /* MapObject.cpp */,
 				03CCBAAB1FF45AAA001D30F4 /* MapObject.hpp */,
-				0395B9412009749400EE31E2 /* Astronaut.cpp */,
-				0395B9422009749400EE31E2 /* Astronaut.hpp */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -312,7 +332,7 @@
 			name = PerlinNoise;
 			sourceTree = "<group>";
 		};
-		03CCBAAE1FF45BAA001D30F4 /* Populated Data */ = {
+		03CCBAAE1FF45BAA001D30F4 /* Designs */ = {
 			isa = PBXGroup;
 			children = (
 				03F433211FFD866C004700AA /* Coord.h */,
@@ -322,7 +342,7 @@
 				03CCBAB81FF4672C001D30F4 /* DataStore.cpp */,
 				03CCBAB91FF4672C001D30F4 /* DataStore.hpp */,
 			);
-			name = "Populated Data";
+			name = Designs;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* ios */ = {
@@ -623,6 +643,8 @@
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */,
+				033F035F200D681100E5ED63 /* AstronautAction.cpp in Sources */,
+				033F035A200D621000E5ED63 /* AstronautGoal.cpp in Sources */,
 				0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				03CCBAAC1FF45AAA001D30F4 /* MapObject.cpp in Sources */,
@@ -652,6 +674,8 @@
 				03CCBAA91FF415CD001D30F4 /* Perlin.cpp in Sources */,
 				03A53A7E1FDB3D410053F265 /* SCGame.cpp in Sources */,
 				03A53A821FDB3D520053F265 /* SCMainMenu.cpp in Sources */,
+				033F0361200D6F1B00E5ED63 /* AstronautGoal.cpp in Sources */,
+				033F0360200D6F1800E5ED63 /* AstronautAction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

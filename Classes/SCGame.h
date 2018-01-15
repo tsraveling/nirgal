@@ -15,6 +15,8 @@
 using namespace std;
 
 #define GAME_LOOP_INTERVAL  1.0f
+#define kMouseLeft          0
+#define kMouseRight         1
 
 // Input
 
@@ -29,7 +31,6 @@ public:
     
     // Variables
     Map map;                                        // Contains the map
-    float timeElapsed;                              // Contains time elapsed for the update(_) function
     vector<ObjectSprite> objectSpritePairs;
     vector<AstronautSprite> astronautSpritePairs;
     vector<AstronautSprite> astronautRosterPairs;
@@ -44,16 +45,30 @@ public:
     // Map interface functions
     void addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation);
     void generateObjectSprites();
-    void generateAstronautSprites();
     void generateSpriteTupleForObject(MapObject *ob);
+    
+    // Astronaut display functinos
+    void generateAstronautSprites();
     void generateSpriteTupleForAstronaut(Astronaut *astronaut);
+    void updateSpriteTuple(AstronautSprite *os);
     
     // Functions
-    void tick();                                    // Performs game logic
+    void tick(float time);                                    // Performs game logic
     
-    // Input
+    // UI Functions
+    void updateAstronautSelection();
+    void centerMapOn(int x, int y);
+    
+    // Keyboard Input
     void keyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
     void keyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    
+    // Mouse / touch input
+    int movedMouse;
+    virtual bool onMouseDown(cocos2d::Event*);
+    virtual void onMouseUp(cocos2d::Event*);
+    virtual void onMouseMove(cocos2d::Event*);
+    virtual void onMouseScroll(cocos2d::Event*);
     
     // Infrastructure
     static cocos2d::Scene* createScene();

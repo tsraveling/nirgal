@@ -11,9 +11,19 @@ USING_NS_CC;
 
 #pragma mark - Game logic
 
-void SCGame::tick() {
+void SCGame::tick(float time) {
     
+    // Run the astronauts
+    for (AstronautSprite os : this->astronautSpritePairs) {
+        
+        // Process astronaut logic and update the sprite if needed
+        if (os.first->tick(&this->map, time)) {
+            this->updateSpriteTuple(&os);
+        }
+    }
     
+    // Update the map
+    this->map.tick(time);
 }
 
 #pragma mark - Map interface
@@ -79,16 +89,22 @@ void SCGame::generateSpriteTupleForAstronaut(Astronaut *astronaut) {
     // Add the sprite
     string frame_name = astronaut->sprite();
     Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
-    Coord pos = astronaut->apparentPosition();
-    sprite->setPosition(pos.x, pos.y);
-    this->mapLayer->addChild(sprite);
     
     // Create and add the tuple
     AstronautSprite os = AstronautSprite(astronaut, sprite);
     this->astronautSpritePairs.push_back(os);
+    
+    // Update the sprite
+    this->updateSpriteTuple(&os);
+    
+    // Add the astronaut to the layer
+    this->mapLayer->addChild(sprite);
 }
 
-#pragma mark - UI Logic
+void SCGame::updateSpriteTuple(AstronautSprite *os) {
+    Coord pos = os->first->apparentPosition();
+    os->second->setPosition(pos.x, pos.y);
+}
 
 #pragma mark - Initialization
 
@@ -118,9 +134,6 @@ bool SCGame::init()
     }
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    int xs = int(visibleSize.width);
-    int ys = int(visibleSize.height);
-    cocos2d::log("visible size is %d by %d",xs,ys);
     
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
@@ -129,10 +142,8 @@ bool SCGame::init()
     
     this->mapLayer = cocos2d::Layer::create();
     
-    auto start_x = float(this->map.startX) * -64;
-    auto start_y = float(this->map.startY) * -64;
     
-    this->mapLayer->setPosition((visibleSize.width / 2) + start_x, (visibleSize.height / 2) + start_y);
+    this->centerMapOn(this->map.startX, this->map.startY);
     this->addChild(this->mapLayer);
     
     // Load the initial sprite sheets
@@ -240,7 +251,12 @@ bool SCGame::init()
         
         // Decrement y
         roster_y -= (64 + 10);
+        
+        // Set up selection
+        astronaut->isSelected = false;
     }
+    
+    this->updateAstronautSelection();
 
     // This is a looping node
     this->scheduleUpdate();
@@ -253,10 +269,45 @@ bool SCGame::init()
     
     this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener,this);
     
+    // Get mouse / touch input
+    
+    auto touchListener = EventListenerMouse::create();
+    
+    touchListener->onMouseDown = CC_CALLBACK_1(SCGame::onMouseDown, this);
+    touchListener->onMouseUp = CC_CALLBACK_1(SCGame::onMouseUp, this);
+    touchListener->onMouseMove = CC_CALLBACK_1(SCGame::onMouseMove, this);
+    touchListener->onMouseScroll = CC_CALLBACK_1(SCGame::onMouseScroll, this);
+    
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+    
     return true;
 }
 
-#pragma mark - Input Methods
+#pragma mark - UI Functions
+
+void SCGame::updateAstronautSelection() {
+    
+    // Update roster
+    for (AstronautSprite os : this->astronautRosterPairs) {
+        os.second->setColor(os.first->isSelected ? Color3B(255, 255, 255) : Color3B(200, 200, 200));
+    }
+    
+    // Update reality
+    for (AstronautSprite os : this->astronautSpritePairs) {
+        os.second->setColor(os.first->isSelected ? Color3B(255, 255, 255) : Color3B(200, 200, 200));
+    }
+}
+
+void SCGame::centerMapOn(int x, int y) {
+    
+    auto rx = float(x) * -64;
+    auto ry = float(y) * -64;
+    
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    this->mapLayer->setPosition((visibleSize.width / 2) + rx, (visibleSize.height / 2) + ry);
+}
+
+#pragma mark - Keyboard Input Methods
 
 void SCGame::keyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
@@ -276,6 +327,154 @@ void SCGame::keyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event
     }
 }
 
+#pragma mark - Mouse / Touch Input
+
+bool SCGame::onMouseDown(Event* event)
+{
+    this->movedMouse = 0;
+    return true;
+}
+
+void SCGame::onMouseUp(Event* event)
+{
+    cocos2d::log("mouseUp");
+    // For now, we're just going to assume this is a mouse click. We'll deal with touch later,
+    // if we ever go to tablets.
+    try {
+        EventMouse* mouseEvent = dynamic_cast<EventMouse*>(event);
+        auto button = mouseEvent->getMouseButton();
+        
+        // Get the mouse location
+        auto click = mouseEvent->getLocation();
+        click.y = Director::getInstance()->getVisibleSize().height - click.y;
+        
+        if (this->movedMouse <= 10) {
+            
+            cocos2d::log("clicked %d", button);
+            
+            // CLICK HANDLER
+            // -------------
+            
+            // Note: preference will be handled vertically. Return to intercept clicks.
+            
+            // 1. UI Layer
+            // -----------
+            
+            // Roster
+            
+            for (AstronautSprite os : this->astronautRosterPairs) {
+                
+                auto rect = os.second->getBoundingBox();
+                
+                if (os.second->getBoundingBox().containsPoint(click)) {
+                    
+                    if (button == kMouseLeft) {
+                        
+                        // Select this astronaut
+                        os.first->isSelected = true;
+                        
+                        // If you're not holding down ctrl or shift unselect everyone else
+                        if (!(keyHeldDown[14] || keyHeldDown[12] || keyHeldDown[13])) {
+                        
+                            for (Astronaut *naut : this->map.astronauts) {
+                                
+                                if (naut != os.first)
+                                    naut->isSelected = false;
+                            }
+                            
+                            // Center on them
+                            this->centerMapOn(os.first->x, os.first->y);
+                            
+                        }
+                        
+                        this->updateAstronautSelection();
+                    }
+                    
+                    return;
+                }
+            }
+                
+                
+            // 2. WORLD LAYER
+            // --------------
+            
+            // Astronauts
+            
+            for (AstronautSprite os : this->astronautSpritePairs) {
+                
+                auto rect = os.second->getBoundingBox();
+                rect.origin += this->mapLayer->getPosition(); // Adjust for map position
+                
+                if (rect.containsPoint(click)) {
+                    
+                    if (button == kMouseLeft) {
+                        
+                        // Reverse selection on this item
+                        os.first->isSelected = true;
+                        
+                        // If you're not holding down ctrl or shift unselect everyone else
+                        if (!(keyHeldDown[14] || keyHeldDown[12] || keyHeldDown[13])) {
+                            
+                            for (Astronaut *naut : this->map.astronauts) {
+                                
+                                if (naut != os.first)
+                                    naut->isSelected = false;
+                            }
+                        }
+                        
+                        this->updateAstronautSelection();
+                        
+                        return;
+                    }
+                }
+            }
+            
+            // Map interaction
+            // At this point, if you're not clicking on anything specific, you're probably just clicking on the map
+            
+            auto map_offset = this->mapLayer->getPosition();
+            auto point = click - map_offset;
+            
+            int map_x = int(point.x / 64);
+            int map_y = int(point.y / 64);
+            
+            if (button == kMouseRight) {
+                
+                // Assign any selected astronauts to go there
+                for (Astronaut *naut : this->map.astronauts) {
+                    if (naut->isSelected) {
+                        
+                        // Set up the goal
+                        auto goal = new AstronautGoal(goalMovement);
+                        goal->x = map_x;
+                        goal->y = map_y;
+                        naut->setGoal(goal);
+                        
+                        cocos2d::log("Command: %s, move to %d, %d", naut->name.c_str(), map_x, map_y);
+                    }
+                }
+            }
+            
+        } else {
+            cocos2d::log("mouse up");
+        }
+    }
+    catch (std::bad_cast& e){
+        // Not sure what kind of event you passed us cocos, but it was the wrong one
+        return;
+    }
+}
+
+void SCGame::onMouseMove(Event* event)
+{
+    this->movedMouse ++;
+}
+
+void SCGame::onMouseScroll(Event *event)
+{
+    cocos2d::log("mouse scroll");
+}
+
 #pragma mark - Cocos2d methods
 
 void SCGame::update(float delta) {
@@ -292,10 +491,5 @@ void SCGame::update(float delta) {
     if (this->keyHeldDown[124])
         this->mapLayer->setPosition(loc.x += map_velocity, loc.y);
     
-    this->timeElapsed += delta;
-    while (this->timeElapsed >= GAME_LOOP_INTERVAL) {
-        
-        this->timeElapsed -= GAME_LOOP_INTERVAL;
-        this->tick();
-    }
+    this->tick(delta);
 }

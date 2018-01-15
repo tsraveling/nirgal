@@ -8,6 +8,48 @@
 #include "Map.h"
 #include "FractalNoise.h"
 
+#pragma mark - AI functions
+
+bool Map::isPassable(int x1, int y1, int x2, int y2) {
+    
+    // For now, it's just true
+    // TODO: Remove this
+    return true;
+    
+    // You can't move into solid rock
+    if (this->grid[x2][y2] == solidRock)
+        return false;
+    
+    // You can't move more than one space at a time, or onto the space you're already on
+    if (x2 - x1 > 1 || x1 - x2 > 1 || y1 - y2 > 1 || y2 - y1 > 1 || (x1 == x2 && y1 == y2))
+        return false;
+    
+    // Check for walls on horizontal jumps
+    bool hor_ok = false;
+    if (x2 > x1)
+        hor_ok = this->wallGrid[(x1*2) + 1][y1 * 2] != empty;
+    if (x1 > x2)
+        hor_ok = this->wallGrid[(x2*2) + 1][y1 * 2] != empty;
+    
+    // Check for walls on vertical jumps
+    bool vert_ok = false;
+    if (y2 > y1)
+        vert_ok = this->wallGrid[x1 * 2][(y1 * 2) + 1] != empty;
+    if (y1 > y2)
+        vert_ok = this->wallGrid[x1 * 2][(y2 * 2) + 1] != empty;
+    
+    // As long as either path is open, we're good to go
+    return hor_ok || vert_ok;
+}
+
+#pragma mark - Game logic
+
+void Map::tick(float time) {
+    
+}
+
+#pragma mark - Utility and initialization
+
 void Map::setTile(int x, int y, TerrainType newTile) {
     
     // Update the tile in question to the new terrain, as long as it's different
