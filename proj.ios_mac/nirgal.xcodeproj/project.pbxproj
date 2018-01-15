@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
+		0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A7B1FDB3D390053F265 /* SCGame.cpp */; };
 		03A53A7E1FDB3D410053F265 /* SCGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A7B1FDB3D390053F265 /* SCGame.cpp */; };
 		03A53A811FDB3D500053F265 /* SCMainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A801FDB3D500053F265 /* SCMainMenu.cpp */; };
@@ -125,6 +127,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0395B9412009749400EE31E2 /* Astronaut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Astronaut.cpp; sourceTree = "<group>"; };
+		0395B9422009749400EE31E2 /* Astronaut.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Astronaut.hpp; sourceTree = "<group>"; };
 		03A53A7B1FDB3D390053F265 /* SCGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCGame.cpp; sourceTree = "<group>"; };
 		03A53A7C1FDB3D390053F265 /* SCGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGame.h; sourceTree = "<group>"; };
 		03A53A7F1FDB3D500053F265 /* SCMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCMainMenu.h; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 				03C568BE1FE1D1F400DA7D6A /* Map.h */,
 				03CCBAAA1FF45AAA001D30F4 /* MapObject.cpp */,
 				03CCBAAB1FF45AAA001D30F4 /* MapObject.hpp */,
+				0395B9412009749400EE31E2 /* Astronaut.cpp */,
+				0395B9422009749400EE31E2 /* Astronaut.hpp */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */,
+				0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				03CCBAAC1FF45AAA001D30F4 /* MapObject.cpp in Sources */,
 				03A53A811FDB3D500053F265 /* SCMainMenu.cpp in Sources */,
@@ -641,6 +648,7 @@
 				03C568C11FE1D26500DA7D6A /* Map.cpp in Sources */,
 				03CCBAAD1FF45AAA001D30F4 /* MapObject.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */,
 				03CCBAA91FF415CD001D30F4 /* Perlin.cpp in Sources */,
 				03A53A7E1FDB3D410053F265 /* SCGame.cpp in Sources */,
 				03A53A821FDB3D520053F265 /* SCMainMenu.cpp in Sources */,

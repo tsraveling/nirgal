@@ -38,6 +38,14 @@ void SCGame::generateObjectSprites() {
     }
 }
 
+void SCGame::generateAstronautSprites() {
+    
+    for (Astronaut *astronaut : this->map.astronauts) {
+        
+        this->generateSpriteTupleForAstronaut(astronaut);
+    }
+}
+
 void SCGame::generateSpriteTupleForObject(MapObject *ob) {
     
     // TODO: Check for extant sprites
@@ -62,6 +70,22 @@ void SCGame::generateSpriteTupleForObject(MapObject *ob) {
     // Create and add the tuple
     ObjectSprite os = ObjectSprite(ob, sprite);
     this->objectSpritePairs.push_back(os);
+}
+
+void SCGame::generateSpriteTupleForAstronaut(Astronaut *astronaut) {
+    
+    // TODO: Check for extant sprites
+    
+    // Add the sprite
+    string frame_name = astronaut->sprite();
+    Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
+    Coord pos = astronaut->apparentPosition();
+    sprite->setPosition(pos.x, pos.y);
+    this->mapLayer->addChild(sprite);
+    
+    // Create and add the tuple
+    AstronautSprite os = AstronautSprite(astronaut, sprite);
+    this->astronautSpritePairs.push_back(os);
 }
 
 #pragma mark - UI Logic
@@ -102,7 +126,11 @@ bool SCGame::init()
     
     // Set up the map layer
     this->mapLayer = cocos2d::Layer::create();
-    this->mapLayer->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+    
+    auto start_x = float(this->map.startX) * -64;
+    auto start_y = float(this->map.startY) * -64;
+    
+    this->mapLayer->setPosition((visibleSize.width / 2) + start_x, (visibleSize.height / 2) + start_y);
     this->addChild(this->mapLayer);
     
     // Load the initial sprite sheets
@@ -111,6 +139,7 @@ bool SCGame::init()
     cache->addSpriteFramesWithFile("res/terrain/terrain.plist");
     cache->addSpriteFramesWithFile("res/terrain/mars-wall.plist");
     cache->addSpriteFramesWithFile("res/objects/lander-assets.plist");
+    cache->addSpriteFramesWithFile("res/characters/astronauts.plist");
     
     // Load the object data
     DataStore::populateData();
@@ -179,6 +208,9 @@ bool SCGame::init()
     
     // Now we're going to generate the lander object sprites
     this->generateObjectSprites();
+    
+    // Now generate the astronaut sprites findme
+    this->generateAstronautSprites();
 
     // This is a looping node
     this->scheduleUpdate();

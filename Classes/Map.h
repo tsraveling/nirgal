@@ -12,6 +12,7 @@
 #include <vector>
 #include "DataStore.hpp"
 #include "MapObject.hpp"
+#include "Astronaut.hpp"
 
 using namespace std;
 
@@ -48,6 +49,7 @@ public:
     TerrainType grid[MAP_XS][MAP_XS];
     WallType wallGrid[MAP_XS * 2][MAP_YS * 2];
     vector<MapObject*> objects;
+    vector<Astronaut*> astronauts;
     int startX, startY;
     
     // Helper Variables

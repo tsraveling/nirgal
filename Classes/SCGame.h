@@ -19,6 +19,7 @@ using namespace std;
 // Input
 
 typedef pair<MapObject*, cocos2d::Sprite*> ObjectSprite;
+typedef pair<Astronaut*, cocos2d::Sprite*> AstronautSprite;
 
 class SCGame : public cocos2d::Layer
 {
@@ -30,6 +31,7 @@ public:
     Map map;                                        // Contains the map
     float timeElapsed;                              // Contains time elapsed for the update(_) function
     vector<ObjectSprite> objectSpritePairs;
+    vector<AstronautSprite> astronautSpritePairs;
     
     // UI elements
     cocos2d::Sprite *tileSprites[MAP_XS][MAP_YS];   // Created sprites will be stored here for map update purposes
@@ -40,7 +42,9 @@ public:
     // Map interface functions
     void addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation);
     void generateObjectSprites();
+    void generateAstronautSprites();
     void generateSpriteTupleForObject(MapObject *ob);
+    void generateSpriteTupleForAstronaut(Astronaut *astronaut);
     
     // Functions
     void tick();                                    // Performs game logic

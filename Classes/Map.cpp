@@ -44,6 +44,9 @@ Map::Map() {
     // Set up the grid we can use to generate perlin noise on
     float noise_grid[MAP_XS][MAP_YS];
     
+    int fallback_start_x = MAP_XS / 2;
+    int fallback_start_y = MAP_YS / 2;
+    
     // Generate the noise
     for (int x=0; x<MAP_XS; x++) {
         for (int y=0; y< MAP_YS; y++) {
@@ -57,12 +60,21 @@ Map::Map() {
             if (noise > max) {
                 max = noise;
                 
-                if (x < MAP_XS - 16 && y < MAP_YS - 16 && x > 16 && y > 16) {
+                fallback_start_x = x;
+                fallback_start_y = y;
+                
+                if (x < MAP_XS - 10 && y < MAP_YS - 10 && x > 10 && y > 10) {
                     startX = x;
                     startY = y;
                 }
             }
         }
+    }
+    
+    // Use the fallback if the map has failed to generate an otherwise useful space
+    if (startX == 0 && startY == 0) {
+        startX = fallback_start_x;
+        startY = fallback_start_y;
     }
     
     // Figure out the intermediate variables
@@ -75,10 +87,6 @@ Map::Map() {
             
             if (noise_grid[x][y] < threshold) {
                 this->grid[x][y] = solidRock;
-            }
-            
-            if (x == startX || y == startY) {
-                this->grid[x][y] = metalFloor;
             }
         }
     }
@@ -159,6 +167,12 @@ Map::Map() {
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 3, orientNormal));
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 4, orientNormal));
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 5, orientNormal));
+    
+    // Astronauts
+    this->astronauts.push_back(new Astronaut("John", "astronaut_01", lander_x + 2, lander_y + 4));
+    this->astronauts.push_back(new Astronaut("Hiroko", "astronaut_02", lander_x + 3, lander_y + 5));
+    this->astronauts.push_back(new Astronaut("Sax", "astronaut_04", lander_x + 4, lander_y + 5));
+    this->astronauts.push_back(new Astronaut("Ann", "astronaut_03", lander_x + 5, lander_y + 4));
 }
 
 void Map::addObject(MapObject *object) {
