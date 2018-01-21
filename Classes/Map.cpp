@@ -73,6 +73,8 @@ vector<MapCoord> Map::getNeighbors(int x, int y) {
 
 AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
     
+    printf("Going to %d, %d from %d, %d\n", dx, dy, astronaut->x, astronaut->y);
+    
     // Get the start location
     MapCoord start = { .x = astronaut->x, .y = astronaut->y };
     
@@ -81,11 +83,8 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
     frontier.push_back(start);
     
     // Set up the "came from" array. The start point "comes from" itself, aka it's the end.
-    //map<MapCoord, MapCoord> came_from;
-    
-    vector<MapCoordRelation> came_from;
-    auto start_rel = MapCoordRelation(start, start);
-    came_from.push_back(start_rel);
+    map<MapCoord, MapCoord> came_from;
+    came_from[start] = start;
     
     // If there's no path, there's no path
     bool found_path = false;
@@ -95,6 +94,8 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
         
         // Get the first item in the frontier
         auto current = frontier.front();
+        
+        // printf("Evaluating point: %d, %d\n", current.x, current.y);
         
         // Early exit; we don't have to keep calculating once we've reached the destination point
         if (current.x == dx && current.y == dy) {
@@ -108,21 +109,22 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
         // Iterate through the neighbors
         for (MapCoord neighbor : neighbors) {
             
+            // printf(" - neighbor (%d, %d): ",neighbor.x, neighbor.y);
+            
             // Check to see if came_from has this item
-            bool present_in_came_from = false;
-            for (MapCoordRelation rel : came_from) {
-                if (rel.first.x == neighbor.x && rel.first.y == neighbor.y) {
-                    present_in_came_from = true;
-                    break;
-                }
+            if (came_from.count(neighbor) == 0) {
+                
+                // printf("new");
+                
+                // If it's not in came_from, then add it to the frontier
+                frontier.push_back(neighbor);
+                
+                // Set the current path
+                came_from[neighbor] = current;
+            } else {
+                // printf("previously added");
             }
-            
-            // If it's not in came_from, then add it to the frontier
-            frontier.push_back(neighbor);
-            
-            // Set the current path
-            auto new_rel = MapCoordRelation(neighbor, current);
-            came_from.push_back(new_rel);
+            // printf("\n");
         }
         
         // Remove the current item
@@ -131,11 +133,11 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
     
     // If we didn't find a path, return nil
     if (!found_path) {
-        printf("No path to destination");
+        printf("No path to destination\n");
         return NULL;
     }
     
-    printf("We've calculated the area and found the destination. Now computing path.");
+    printf("We've calculated the area and found the destination. Now computing path.\n");
     
     // Set up the route we'll return
     AstronautRoute *route = new AstronautRoute();
@@ -143,11 +145,50 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
     // Now, generate the path. We start with the destination and work backwards.
     auto current = MapCoord { .x = dx, .y = dy };
     
-    while (current.x != start.x && current.y != start.y) {
+    while (current != start) {
         
+        // Get the next item in line
+        auto next = came_from[current];
         
+        // Figure out the direction
+        RoutingDirection dir = routingUp;
+        if (current.x > next.x)
+            dir = routingRight;
+        else if (current.x < next.x)
+            dir = routingLeft;
+        else if (current.y < next.y)
+            dir = routingDown;
         
+        // Add the path step
+        route->steps.push_back(dir);
+        
+        // Step toward origin
+        current = next;
     }
+    
+    // Reverse the step array
+    std::reverse(route->steps.begin(), route->steps.end());
+    
+    // Just for the hell of it let's print this shit to console
+    for (auto step : route->steps) {
+        switch(step) {
+            case routingUp:
+                printf("up");
+                break;
+            case routingRight:
+                printf("right");
+                break;
+            case routingDown:
+                printf("down");
+                break;
+            case routingLeft:
+                printf("left");
+                break;
+        }
+        
+        printf(" -> ");
+    }
+    printf("end\n");
     
     // Return the route for us to use
     return route;
@@ -248,6 +289,18 @@ Map::Map() {
     int lander_x = startX - 4;
     int lander_y = startY - 4;
     
+    // TODO: remove this pathing debug bullshit
+    
+    string insert_block[8] = {"00000000",
+        "00110100",
+        "01110110",
+        "01110111",
+        "01110110",
+        "01110010",
+        "00111100",
+        "00011000"};
+    
+    /*
     string insert_block[8] = {"00000000",
                               "00111100",
                               "01111110",
@@ -256,6 +309,7 @@ Map::Map() {
                               "01111110",
                               "00111100",
                               "00000000"};
+     */
     
     // Modify the terrain and add the wall
     for (int x=0; x<8; x++) {
@@ -275,7 +329,7 @@ Map::Map() {
     }
     
     // Now add the objects
-    
+    /*
     // Suitports along the top
     this->addObject(new MapObject(suitPort, lander_x + 3, lander_y + 7, orientNormal));
     this->addObject(new MapObject(suitPort, lander_x + 4, lander_y + 7, orientNormal));
@@ -320,6 +374,7 @@ Map::Map() {
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 3, orientNormal));
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 4, orientNormal));
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 5, orientNormal));
+     */
     
     // Astronauts
     this->astronauts.push_back(new Astronaut("John", "astronaut_01", lander_x + 2, lander_y + 4));

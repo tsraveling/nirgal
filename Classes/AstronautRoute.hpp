@@ -21,6 +21,7 @@ enum RoutingDirection : unsigned char {
 };
 
 class AstronautRoute {
+public:
     vector <RoutingDirection> steps;
 };
 

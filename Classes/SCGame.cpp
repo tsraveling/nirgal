@@ -444,13 +444,11 @@ void SCGame::onMouseUp(Event* event)
                 for (Astronaut *naut : this->map.astronauts) {
                     if (naut->isSelected) {
                         
-                        // Set up the goal
-                        auto goal = new AstronautGoal(goalMovement);
-                        goal->x = map_x;
-                        goal->y = map_y;
-                        naut->setGoal(goal);
+                        // Calculate path
+                        auto route = this->map.computeRoute(naut, map_x, map_y);
                         
-                        cocos2d::log("Command: %s, move to %d, %d", naut->name.c_str(), map_x, map_y);
+                        // TODO: much more here.
+                        
                     }
                 }
             }

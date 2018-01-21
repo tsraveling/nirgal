@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <algorithm>
 #include "DataStore.hpp"
 #include "MapObject.hpp"
 #include "Astronaut.hpp"
@@ -19,19 +20,24 @@ using namespace std;
 #define MAP_XS 128
 #define MAP_YS 128
 
-/*
- * Terrains:
- *
- * 0. Mars ground
- * 1. Mars walls
- *
- */
-
 struct MapCoord {
+    
     int x, y;
+    
+    // We need to define custom operators for this struct in order to get the maps in the pathing system to work right
+    
+    friend bool operator <(const MapCoord& a, const MapCoord& b) {
+        return std::tie(a.x, a.y) < std::tie(b.x,b.y);
+    }
+    
+    friend bool operator ==(const MapCoord& a, const MapCoord& b) {
+        return a.x == b.x && a.y == b.y;
+    }
+    
+    friend bool operator !=(const MapCoord& a, const MapCoord& b) {
+        return a.x != b.x || a.y != b.y;
+    }
 };
-
-typedef pair<MapCoord, MapCoord> MapCoordRelation;
 
 enum TerrainType : char {
     
