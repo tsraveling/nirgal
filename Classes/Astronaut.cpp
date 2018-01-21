@@ -28,16 +28,13 @@ bool Astronaut::tick(Map *map, float time) {
                 
                 case actionMovement:                // Move the astronaut
                     
-                    // Make sure the path is still doable
-                    if (map->isPassable(this->x, this->y, this->currentAction->x, this->currentAction->y)) {
-                        
-                        // If it is, move the astronaut
-                        this->x = this->currentAction->x;
-                        this->y = this->currentAction->y;
-                        
-                        // Refresh the sprite
-                        needs_refresh = true;
-                    }
+                    // If it is, move the astronaut
+                    this->x = this->currentAction->x;
+                    this->y = this->currentAction->y;
+                    
+                    // Refresh the sprite
+                    needs_refresh = true;
+                    
                     break;
             }
             

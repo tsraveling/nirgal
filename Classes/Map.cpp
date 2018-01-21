@@ -10,36 +10,147 @@
 
 #pragma mark - AI functions
 
-bool Map::isPassable(int x1, int y1, int x2, int y2) {
+bool Map::isPassable(int x, int y, RoutingDirection direction) {
     
-    // For now, it's just true
-    // TODO: Remove this
+    // Check for walls
+    int dx, dy;
+    switch (direction) {
+        case routingUp:
+            if (this->wallGrid[x * 2][(y * 2) + 1] != empty)
+                return false;
+            dx = x;
+            dy = y + 1;
+            break;
+        case routingRight:
+            if (this->wallGrid[(x * 2) + 1][y * 2] != empty)
+                return false;
+            dx = x + 1;
+            dy = y;
+            break;
+        case routingDown:
+            if (this->wallGrid[x * 2][(y * 2) - 1] != empty)
+                return false;
+            dx = x;
+            dy = y - 1;
+            break;
+        case routingLeft:
+            if (this->wallGrid[(x * 2) - 1][y * 2] != empty)
+                return false;
+            dx = x - 1;
+            dy = y;
+            break;
+    }
+    
+    if (dx < 0 || dy < 0 || dx >= MAP_XS || dy >= MAP_YS)
+        return false;
+    
+    if (this->grid[dx][dy] == solidRock)
+        return false;
+    
+    // TODO: Check for other astronauts, objects, etc.
+    
     return true;
+}
+
+vector<MapCoord> Map::getNeighbors(int x, int y) {
     
-    // You can't move into solid rock
-    if (this->grid[x2][y2] == solidRock)
-        return false;
+    vector <MapCoord> ret;
     
-    // You can't move more than one space at a time, or onto the space you're already on
-    if (x2 - x1 > 1 || x1 - x2 > 1 || y1 - y2 > 1 || y2 - y1 > 1 || (x1 == x2 && y1 == y2))
-        return false;
+    if (this->isPassable(x, y, routingUp))
+        ret.push_back({.x = x, .y = y + 1});
     
-    // Check for walls on horizontal jumps
-    bool hor_ok = false;
-    if (x2 > x1)
-        hor_ok = this->wallGrid[(x1*2) + 1][y1 * 2] != empty;
-    if (x1 > x2)
-        hor_ok = this->wallGrid[(x2*2) + 1][y1 * 2] != empty;
+    if (this->isPassable(x, y, routingRight))
+        ret.push_back({.x = x + 1, .y = y});
     
-    // Check for walls on vertical jumps
-    bool vert_ok = false;
-    if (y2 > y1)
-        vert_ok = this->wallGrid[x1 * 2][(y1 * 2) + 1] != empty;
-    if (y1 > y2)
-        vert_ok = this->wallGrid[x1 * 2][(y2 * 2) + 1] != empty;
+    if (this->isPassable(x, y, routingDown))
+        ret.push_back({.x = x, .y = y - 1});
     
-    // As long as either path is open, we're good to go
-    return hor_ok || vert_ok;
+    if (this->isPassable(x, y, routingLeft))
+        ret.push_back({.x = x - 1, .y = y});
+    
+    return ret;
+}
+
+AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
+    
+    // Get the start location
+    MapCoord start = { .x = astronaut->x, .y = astronaut->y };
+    
+    // Set up the frontier
+    vector<MapCoord> frontier;
+    frontier.push_back(start);
+    
+    // Set up the "came from" array. The start point "comes from" itself, aka it's the end.
+    //map<MapCoord, MapCoord> came_from;
+    
+    vector<MapCoordRelation> came_from;
+    auto start_rel = MapCoordRelation(start, start);
+    came_from.push_back(start_rel);
+    
+    // If there's no path, there's no path
+    bool found_path = false;
+    
+    // Now process the frontier recursively
+    while (frontier.size() > 0) {
+        
+        // Get the first item in the frontier
+        auto current = frontier.front();
+        
+        // Early exit; we don't have to keep calculating once we've reached the destination point
+        if (current.x == dx && current.y == dy) {
+            found_path = true;
+            break;
+        }
+        
+        // Get the neighbors
+        auto neighbors = this->getNeighbors(current.x, current.y);
+        
+        // Iterate through the neighbors
+        for (MapCoord neighbor : neighbors) {
+            
+            // Check to see if came_from has this item
+            bool present_in_came_from = false;
+            for (MapCoordRelation rel : came_from) {
+                if (rel.first.x == neighbor.x && rel.first.y == neighbor.y) {
+                    present_in_came_from = true;
+                    break;
+                }
+            }
+            
+            // If it's not in came_from, then add it to the frontier
+            frontier.push_back(neighbor);
+            
+            // Set the current path
+            auto new_rel = MapCoordRelation(neighbor, current);
+            came_from.push_back(new_rel);
+        }
+        
+        // Remove the current item
+        frontier.erase(frontier.begin());
+    }
+    
+    // If we didn't find a path, return nil
+    if (!found_path) {
+        printf("No path to destination");
+        return NULL;
+    }
+    
+    printf("We've calculated the area and found the destination. Now computing path.");
+    
+    // Set up the route we'll return
+    AstronautRoute *route = new AstronautRoute();
+    
+    // Now, generate the path. We start with the destination and work backwards.
+    auto current = MapCoord { .x = dx, .y = dy };
+    
+    while (current.x != start.x && current.y != start.y) {
+        
+        
+        
+    }
+    
+    // Return the route for us to use
+    return route;
 }
 
 #pragma mark - Game logic

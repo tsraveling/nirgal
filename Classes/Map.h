@@ -27,6 +27,12 @@ using namespace std;
  *
  */
 
+struct MapCoord {
+    int x, y;
+};
+
+typedef pair<MapCoord, MapCoord> MapCoordRelation;
+
 enum TerrainType : char {
     
     marsDirt = 0,
@@ -61,7 +67,9 @@ public:
     void tick(float time);
     
     // AI Functions
-    bool isPassable(int x1, int y1, int x2, int y2);
+    bool isPassable(int x, int y, RoutingDirection direction);
+    vector<MapCoord> getNeighbors(int x, int y);
+    AstronautRoute *computeRoute(Astronaut *astronaut, int dx, int dy);
     
     // Helper Functions
     void addObject(MapObject *object);

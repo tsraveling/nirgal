@@ -9,6 +9,7 @@
 #define AstronautGoal_hpp
 
 #include <stdio.h>
+#include "AstronautRoute.hpp"
 
 using namespace std;
 

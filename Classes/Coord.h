@@ -10,6 +10,7 @@
 
 struct Coord {
     float x,y;
+    
 };
 
 #endif /* Point_h */

@@ -11,6 +11,7 @@
 		033F035F200D681100E5ED63 /* AstronautAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F035D200D681100E5ED63 /* AstronautAction.cpp */; };
 		033F0360200D6F1800E5ED63 /* AstronautAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F035D200D681100E5ED63 /* AstronautAction.cpp */; };
 		033F0361200D6F1B00E5ED63 /* AstronautGoal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F0358200D621000E5ED63 /* AstronautGoal.cpp */; };
+		036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 036BAA2A201413560021EE81 /* AstronautRoute.cpp */; };
 		0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A53A7B1FDB3D390053F265 /* SCGame.cpp */; };
@@ -135,6 +136,8 @@
 		033F0359200D621000E5ED63 /* AstronautGoal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautGoal.hpp; sourceTree = "<group>"; };
 		033F035D200D681100E5ED63 /* AstronautAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautAction.cpp; sourceTree = "<group>"; };
 		033F035E200D681100E5ED63 /* AstronautAction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautAction.hpp; sourceTree = "<group>"; };
+		036BAA2A201413560021EE81 /* AstronautRoute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautRoute.cpp; sourceTree = "<group>"; };
+		036BAA2B201413560021EE81 /* AstronautRoute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautRoute.hpp; sourceTree = "<group>"; };
 		0395B9412009749400EE31E2 /* Astronaut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Astronaut.cpp; sourceTree = "<group>"; };
 		0395B9422009749400EE31E2 /* Astronaut.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Astronaut.hpp; sourceTree = "<group>"; };
 		03A53A7B1FDB3D390053F265 /* SCGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCGame.cpp; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 		033F035C200D62F700E5ED63 /* Astronauts */ = {
 			isa = PBXGroup;
 			children = (
+				036BAA2A201413560021EE81 /* AstronautRoute.cpp */,
+				036BAA2B201413560021EE81 /* AstronautRoute.hpp */,
 				033F035D200D681100E5ED63 /* AstronautAction.cpp */,
 				033F035E200D681100E5ED63 /* AstronautAction.hpp */,
 				033F0358200D621000E5ED63 /* AstronautGoal.cpp */,
@@ -644,6 +649,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */,
 				033F035F200D681100E5ED63 /* AstronautAction.cpp in Sources */,
+				036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */,
 				033F035A200D621000E5ED63 /* AstronautGoal.cpp in Sources */,
 				0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
