@@ -9,8 +9,10 @@
 #define AstronautAction_hpp
 
 #include <stdio.h>
+#include "AstronautRoute.hpp"
 
 using namespace std;
+
 
 enum AstronautActionType : int {
     
@@ -22,7 +24,7 @@ public:
     
     AstronautActionType type;
     float timeLeft;
-    int x, y;
+    RoutingDirection direction;
     
     // Constructor
     AstronautAction(AstronautActionType type, float timeLeft);

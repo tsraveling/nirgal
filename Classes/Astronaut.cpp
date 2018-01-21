@@ -28,19 +28,42 @@ bool Astronaut::tick(Map *map, float time) {
                 
                 case actionMovement:                // Move the astronaut
                     
-                    // If it is, move the astronaut
-                    this->x = this->currentAction->x;
-                    this->y = this->currentAction->y;
-                    
-                    // Refresh the sprite
-                    needs_refresh = true;
+                    // Make sure the path is clear
+                    if (map->isPassable(this->x, this->y, this->currentAction->direction)) {
+                        
+                        // Actually move the 'naut
+                        switch (this->currentAction->direction) {
+                            case routingUp:
+                                this->y += 1;
+                                break;
+                            case routingRight:
+                                this->x += 1;
+                                break;
+                            case routingDown:
+                                this->y -= 1;
+                                break;
+                            case routingLeft:
+                                this->x -= 1;
+                                break;
+                        }
+                        
+                        // Refresh the sprite
+                        needs_refresh = true;
+                        
+                    } else {
+                        
+                        // TODO: replace this rough frustration delay
+                        this->currentAction->timeLeft = 1.0;
+                    }
                     
                     break;
             }
             
-            // Remove the action
-            delete(this->currentAction);
-            this->currentAction = NULL;
+            // Remove the action, if we didn't refresh the timer on it
+            if (this->currentAction->timeLeft <= 0) {
+                delete(this->currentAction);
+                this->currentAction = NULL;
+            }
         }
     }
     
@@ -56,28 +79,24 @@ bool Astronaut::tick(Map *map, float time) {
                 case goalMovement:          // GOAL: Movement
                     
                     // Are we there yet?
-                    if (this->x == goal->x && this->y == goal->y) {
+                    if (goal->route->steps.size() == 0) {
                         
                         // If we are, then hurrah, we can be done
                         this->immediateGoals.erase(this->immediateGoals.begin());
                         
                     } else {
                         
-                        // For now just move towards the goal.
+                        // Create the step action
                         auto *action = new AstronautAction(actionMovement, this->movementSpeed());
                         
-                        // Base the movement on current location
-                        action->x = this->x;
-                        action->y = this->y;
+                        // Get the direction from the step
+                        auto step = goal->route->steps.front();
+                        action->direction = step;
                         
-                        // Decide which way to go based on relation to goal
-                        if (goal->x > this->x) action->x ++;
-                        if (goal->x < this->x) action->x --;
-                        if (goal->y > this->y) action->y ++;
-                        if (goal->y < this->y) action->y --;
+                        // Drop the step
+                        goal->route->steps.erase(goal->route->steps.begin());
                         
-                        printf("%s heading to %d, %d\n", this->name.c_str(), action->x, action->y);
-                        
+                        // Perform the action
                         this->doAction(action);
                     }
                     break;

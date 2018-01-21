@@ -23,7 +23,7 @@ class AstronautGoal {
 public:
     
     AstronautGoalType type;
-    int x,y;
+    AstronautRoute *route;
     
     // Constructor
     AstronautGoal(AstronautGoalType type);

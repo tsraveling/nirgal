@@ -447,7 +447,18 @@ void SCGame::onMouseUp(Event* event)
                         // Calculate path
                         auto route = this->map.computeRoute(naut, map_x, map_y);
                         
-                        // TODO: much more here.
+                        // Make sure there IS a path
+                        if (route != NULL) {
+                            
+                            // Create the goal and add the route to it
+                            auto goal = new AstronautGoal(goalMovement);
+                            goal->route = route;
+                            naut->setGoal(goal);
+                            
+                        } else {
+                            
+                            // TODO: Astronaut should bark, "can't get there"
+                        }
                         
                     }
                 }
