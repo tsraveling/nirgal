@@ -133,6 +133,12 @@ void Astronaut::setGoal(AstronautGoal *goal) {
     // First clear out current goals
     this->immediateGoals.clear();
     
+    // And clear out the next action
+    if (this->currentAction != NULL) {
+        delete(this->currentAction);
+        this->currentAction = NULL;
+    }
+    
     // Now do this one
     this->addGoal(goal);
 }

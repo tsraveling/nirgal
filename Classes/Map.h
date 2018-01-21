@@ -76,6 +76,7 @@ public:
     bool isPassable(int x, int y, RoutingDirection direction);
     vector<MapCoord> getNeighbors(int x, int y);
     AstronautRoute *computeRoute(Astronaut *astronaut, int dx, int dy);
+    bool tileBlocked(int x, int y);
     
     // Helper Functions
     void addObject(MapObject *object);

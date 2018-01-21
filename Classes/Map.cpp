@@ -41,15 +41,27 @@ bool Map::isPassable(int x, int y, RoutingDirection direction) {
             break;
     }
     
-    if (dx < 0 || dy < 0 || dx >= MAP_XS || dy >= MAP_YS)
+    if (this->tileBlocked(dx, dy))
         return false;
-    
-    if (this->grid[dx][dy] == solidRock)
-        return false;
-    
-    // TODO: Check for other astronauts, objects, etc.
     
     return true;
+}
+
+bool Map::tileBlocked(int x, int y) {
+    
+    if (x < 0 || x < 0 || x >= MAP_XS || x >= MAP_YS)
+        return true;
+    
+    if (this->grid[x][x] == solidRock)
+        return true;
+    
+    for (Astronaut *naut : this->astronauts) {
+        
+        if (naut->x == x && naut->y == y)
+            return true;
+    }
+    
+    return false;
 }
 
 vector<MapCoord> Map::getNeighbors(int x, int y) {
@@ -75,6 +87,12 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
     
     printf("Going to %d, %d from %d, %d\n", dx, dy, astronaut->x, astronaut->y);
     
+    // Make sure the destination is blocked
+    if (this->tileBlocked(dx, dy)) {
+        printf("Destination blocked.\n");
+        return NULL;
+    }
+    
     // Get the start location
     MapCoord start = { .x = astronaut->x, .y = astronaut->y };
     
@@ -95,8 +113,6 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
         // Get the first item in the frontier
         auto current = frontier.front();
         
-        // printf("Evaluating point: %d, %d\n", current.x, current.y);
-        
         // Early exit; we don't have to keep calculating once we've reached the destination point
         if (current.x == dx && current.y == dy) {
             found_path = true;
@@ -109,22 +125,15 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
         // Iterate through the neighbors
         for (MapCoord neighbor : neighbors) {
             
-            // printf(" - neighbor (%d, %d): ",neighbor.x, neighbor.y);
-            
             // Check to see if came_from has this item
             if (came_from.count(neighbor) == 0) {
-                
-                // printf("new");
                 
                 // If it's not in came_from, then add it to the frontier
                 frontier.push_back(neighbor);
                 
                 // Set the current path
                 came_from[neighbor] = current;
-            } else {
-                // printf("previously added");
             }
-            // printf("\n");
         }
         
         // Remove the current item
@@ -136,8 +145,6 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
         printf("No path to destination\n");
         return NULL;
     }
-    
-    printf("We've calculated the area and found the destination. Now computing path.\n");
     
     // Set up the route we'll return
     AstronautRoute *route = new AstronautRoute();
@@ -168,27 +175,6 @@ AstronautRoute *Map::computeRoute(Astronaut *astronaut, int dx, int dy) {
     
     // Reverse the step array
     std::reverse(route->steps.begin(), route->steps.end());
-    
-    // Just for the hell of it let's print this shit to console
-    for (auto step : route->steps) {
-        switch(step) {
-            case routingUp:
-                printf("up");
-                break;
-            case routingRight:
-                printf("right");
-                break;
-            case routingDown:
-                printf("down");
-                break;
-            case routingLeft:
-                printf("left");
-                break;
-        }
-        
-        printf(" -> ");
-    }
-    printf("end\n");
     
     // Return the route for us to use
     return route;
@@ -266,7 +252,7 @@ Map::Map() {
     }
     
     // Use the fallback if the map has failed to generate an otherwise useful space
-    if (startX == 0 && startY == 0) {
+    if (startX == 0 || startY == 0 || startX >= MAP_XS - 1 || startY >= MAP_YS - 1) {
         startX = fallback_start_x;
         startY = fallback_start_y;
     }
@@ -289,18 +275,6 @@ Map::Map() {
     int lander_x = startX - 4;
     int lander_y = startY - 4;
     
-    // TODO: remove this pathing debug bullshit
-    
-    string insert_block[8] = {"00000000",
-        "00110100",
-        "01110110",
-        "01110111",
-        "01110110",
-        "01110010",
-        "00111100",
-        "00011000"};
-    
-    /*
     string insert_block[8] = {"00000000",
                               "00111100",
                               "01111110",
@@ -309,7 +283,6 @@ Map::Map() {
                               "01111110",
                               "00111100",
                               "00000000"};
-     */
     
     // Modify the terrain and add the wall
     for (int x=0; x<8; x++) {
@@ -329,7 +302,7 @@ Map::Map() {
     }
     
     // Now add the objects
-    /*
+    
     // Suitports along the top
     this->addObject(new MapObject(suitPort, lander_x + 3, lander_y + 7, orientNormal));
     this->addObject(new MapObject(suitPort, lander_x + 4, lander_y + 7, orientNormal));
@@ -374,7 +347,6 @@ Map::Map() {
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 3, orientNormal));
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 4, orientNormal));
     this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 5, orientNormal));
-     */
     
     // Astronauts
     this->astronauts.push_back(new Astronaut("John", "astronaut_01", lander_x + 2, lander_y + 4));
