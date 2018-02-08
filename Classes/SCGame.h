@@ -11,6 +11,8 @@
 
 #include "cocos2d.h"
 #include "Map.h"
+#include "YUIView.hpp"
+#include "YUILabel.hpp"
 
 using namespace std;
 
@@ -41,6 +43,9 @@ public:
     cocos2d::Sprite *wallSprites[MAP_XS * 2][MAP_YS * 2];
     cocos2d::Layer *mapLayer;
     cocos2d::Layer *uiLayer;
+    
+    YUIView *panelView;
+    YUILabel *panelLabel;
     
     // Map interface functions
     void addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation);

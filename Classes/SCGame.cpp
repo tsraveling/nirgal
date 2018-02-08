@@ -256,6 +256,25 @@ bool SCGame::init()
     }
     
     this->updateAstronautSelection();
+    
+    // Let's try a fancy new YUIView
+    this->panelView = new YUIView(100, 200);
+    this->uiLayer->addChild(this->panelView);
+    this->panelView->anchorLeft(30);
+    this->panelView->anchorBottom(30);
+    this->panelView->anchorRight(30);
+    
+    // Now a fancy new YUILabel!
+    string text = "Lorem ipsum vel probatisim salomonis claviculae rabini hebraicim in quibus tum naturalia tum super naturalia secreta licet abditissima in promptu apparent, modò operator per necessaria et contenta faciat scia tamen oportet demonum potentia dum taxat per agantur.";
+    this->panelLabel = new YUILabel(text, 100, 100);
+    this->panelView->addSubview(this->panelLabel);
+    this->panelLabel->anchorLeft(20);
+    this->panelLabel->anchorTop(20);
+    this->panelLabel->anchorRight(20);
+    this->panelLabel->anchorBottom(20);
+    
+    // 3. Set up game logic and inputs
+    // -------------------------------
 
     // This is a looping node
     this->scheduleUpdate();
