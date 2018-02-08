@@ -76,7 +76,7 @@ void DataStore::populateData() {
                 
             case landerLiquidTank:
                 design->name = "Liquid Tank";
-                design->baseSpriteName = "h2o.png";
+                design->baseSpriteName = "externaltank.png";
                 break;
                 
             default:

@@ -193,12 +193,17 @@ bool SCGame::init()
         }
     }
     
+    // Now we're going to generate the lander object sprites
+    this->generateObjectSprites();
+    
+    // Now generate the astronaut sprites
+    this->generateAstronautSprites();
+    
     // Set up the wall tiles
     for (int x=0; x < MAP_XS * 2; x++) {
         for (int y = 0; y < MAP_YS * 2; y++) {
             
             if (x % 2 != 0 || y % 2 != 0) {
-                
                 
                 Sprite *sprite = Sprite::createWithSpriteFrameName("wall_metal_segment.png");
                 sprite->setPosition((float(x)*32) + 32, (float(y)*32) + 32);
@@ -218,12 +223,6 @@ bool SCGame::init()
             }
         }
     }
-    
-    // Now we're going to generate the lander object sprites
-    this->generateObjectSprites();
-    
-    // Now generate the astronaut sprites
-    this->generateAstronautSprites();
     
     // 2. Now set up the UI Layer
     // --------------------------

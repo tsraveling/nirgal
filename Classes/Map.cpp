@@ -308,10 +308,10 @@ Map::Map() {
     this->addObject(new MapObject(suitPort, lander_x + 4, lander_y + 7, orientNormal));
     
     // Landing struts
-    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 6, orient270));
-    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 6, orientNormal));
-    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 1, orient180));
-    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 1, orient90));
+    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 6, orient180));
+    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 6, orient270));
+    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 1, orient90));
+    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 1, orientNormal));
     
     // Water and food and oxygen stations
     this->addObject(new MapObject(waterStation, lander_x + 2, lander_y + 6, orientNormal));
