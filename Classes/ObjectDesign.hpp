@@ -9,7 +9,6 @@
 #define ObjectDesign_hpp
 
 #include <stdio.h>
-#include "ObjectType.h"
 
 using namespace std;
 

@@ -1,0 +1,49 @@
+sprite-sheets:
+  - lander-assets
+objects:
+  crash-couch:
+    name: Crash Couch
+    sprite: crashcouch.png
+    height: 2
+  suitport:
+    name: Suitport
+    sprite: suitport.png
+    height: 2
+    interactions:
+      suit-up:
+        name: Suit up
+        description: Put on a spacesuit!
+        type: suitUp
+        duration: 30s
+        position: 0, 1
+      suit-down:
+        name: Take off spacesuit
+        description: Get out of your spacesuit and back into a pressurized environment
+        type: suitDown
+        duration: 30s
+        position: 0, 0
+  lander-crate:
+    name: Cargo Container
+    sprite: crate.png
+  water-station:
+    name: Water Station
+    sprite: h2o.png
+  landing-computer:
+    name: Landing Computer
+    sprite: landingcomputer.png
+    width: 2
+  landing-strut:
+    name: Landing Strut
+    sprite: landingstrut.png
+  atmosphere-tank:
+    name: Atmosphere Tank
+    sprite: o2.png
+  small-food-station:
+    name: Small Food Station
+    sprite: smallfood.png
+  lander-solar-panel:
+    name: Small Solar Panel
+    sprite: solarpanel.png
+  lander-liquid-tank:
+    name: External Liquid Tank
+    sprite: externaltank.png

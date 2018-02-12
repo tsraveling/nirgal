@@ -1,0 +1,27 @@
+sprite-sheets:
+  - astronauts
+astronauts:
+  john-rollins:
+    firstName: John
+    lastName: Rollins
+    sprites:
+      suitOn: astronaut_01_st.png
+      suitOff: astronaut_01_ns.png
+  maya-li:
+      firstName: Maya
+      lastName: Li
+      sprites:
+        suitOn: astronaut_02_st.png
+        suitOff: astronaut_02_ns.png
+  ellen-ripley:
+    firstName: Ellen
+    lastName: Ripley
+    sprites:
+        suitOn: astronaut_03_st.png
+        suitOff: astronaut_03_ns.png
+  jacob-bains:
+    firstName: Jacob
+    lastName: Bains
+    sprites:
+        suitOn: astronaut_04_st.png
+        suitOff: astronaut_04_ns.png

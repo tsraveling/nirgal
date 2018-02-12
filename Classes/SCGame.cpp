@@ -149,13 +149,17 @@ bool SCGame::init()
     // Load the initial sprite sheets
     
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+    /*
     cache->addSpriteFramesWithFile("res/terrain/terrain.plist");
     cache->addSpriteFramesWithFile("res/terrain/mars-wall.plist");
     cache->addSpriteFramesWithFile("res/objects/lander-assets.plist");
     cache->addSpriteFramesWithFile("res/characters/astronauts.plist");
+     */
     
     // Load the object data
     DataStore::populateData();
+    
+    return true;
     
     // Lay out the lander in the terrain data
     

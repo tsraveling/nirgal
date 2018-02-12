@@ -1,0 +1,3 @@
+# This file will determine which content gets loaded in.
+load:
+  - core

@@ -1,0 +1,7 @@
+sprite-sheets:
+  - mars-wall
+  - terrain
+terrain:
+  # TODO: More terrain things here
+  placeholder:
+    key: value

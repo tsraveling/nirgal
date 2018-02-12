@@ -9,13 +9,24 @@
 #define DataStore_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "ObjectDesign.hpp"
+#include "yaml-cpp/yaml.h"
+
+using namespace std;
 
 class DataStore {
     
 public:
     static void populateData();
-    static ObjectDesign* designFor(ObjectType type);
+    static DataStore* singleton();
+    
+    vector<ObjectDesign*> designs;
+    vector<string> spriteSheets;
+    
+private:
+    ObjectDesign *designForNode(YAML::Node node);
+    void onboardNode(YAML::Node node);
 };
 
 #endif /* DataStore_hpp */

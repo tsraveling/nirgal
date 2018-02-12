@@ -7,82 +7,52 @@
 
 #include "DataStore.hpp"
 
-ObjectDesign *objectDesigns[kNumberOfObjectTypes];
+DataStore *dataStoreSingleton;
 
-ObjectDesign* DataStore::designFor(ObjectType type) {
-    
-    return objectDesigns[int(type)];
+DataStore* DataStore::singleton() {
+    return dataStoreSingleton;
 }
 
 void DataStore::populateData() {
     
-    for (int i=0; i<kNumberOfObjectTypes; i++) {
+    // Create the singleton
+    dataStoreSingleton = new DataStore();
+    
+    // Get the overall content manifest, which lists all of the mods installed (for vanilla, only `core`)
+    YAML::Node content = YAML::LoadFile("content/content.yaml");
+    auto loads = content["load"];
+    assert(loads.IsSequence());
+    for (YAML::const_iterator it = loads.begin(); it != loads.end(); ++it) {
         
-        auto design = new ObjectDesign();
+        // Get the load tag (e.g. "core")
+        auto load_tag = it->as<string>();
         
-        // Most objects are 1x1
-        design->width = 1;
-        design->height = 1;
+        // Get the manifest
+        YAML::Node manifest = YAML::LoadFile("content/" + load_tag + "/manifest.yaml");
         
-        switch (ObjectType(i)) {
+        // Make sure it's a map
+        assert(manifest.IsMap());
+        
+        // Now go through the subsets of the manifest and load those files
+        for (YAML::const_iterator manifest_it = manifest.begin(); manifest_it != manifest.end(); ++manifest_it) {
+            
+            // Get the key for the subfolder
+            auto manifest_node_key = manifest_it->first.as<string>();
+            
+            // Get the sequence of files to load
+            auto manifest_subfiles = manifest_it->second.as<YAML::Node>();
+            
+            // Make sure it's a sequence
+            assert(manifest_subfiles.IsSequence());
+            
+            // Iterate through the subsequence of files and load each one
+            for (YAML::const_iterator subfile_it = manifest_subfiles.begin(); subfile_it != manifest_subfiles.end(); ++subfile_it) {
                 
-            case crashCouch:
-                design->name = "Crash Couch";
-                design->baseSpriteName = "crashcouch.png";
-                design->height = 2;
-                break;
+                // Get the file key
+                auto subfile_key = subfile_it->as<string>();
                 
-            case landerCrate:
-                design->name = "Cargo Container";
-                design->baseSpriteName = "crate.png";
-                break;
                 
-            case waterStation:
-                design->name = "Water Station";
-                design->baseSpriteName = "h2o.png";
-                break;
-                
-            case landingComputer:
-                design->name = "Landing Computer";
-                design->baseSpriteName = "landingcomputer.png";
-                design->width = 2;
-                break;
-                
-            case landingStrut:
-                design->name = "Landing Strut";
-                design->baseSpriteName = "landingstrut.png";
-                break;
-                
-            case atmosphereTank:
-                design->name = "Atmosphere Cannister";
-                design->baseSpriteName = "o2.png";
-                break;
-                
-            case smallFoodStation:
-                design->name = "Small Food Station";
-                design->baseSpriteName = "smallfood.png";
-                break;
-                
-            case landerSolarPanel:
-                design->name = "Small Solar Panel";
-                design->baseSpriteName = "solarpanel.png";
-                break;
-                
-            case suitPort:
-                design->name = "Suitport";
-                design->baseSpriteName = "suitport.png";
-                design->height = 2;
-                break;
-                
-            case landerLiquidTank:
-                design->name = "Liquid Tank";
-                design->baseSpriteName = "externaltank.png";
-                break;
-                
-            default:
-                break;
+            }
         }
-        
-        objectDesigns[i] = design;
     }
 }

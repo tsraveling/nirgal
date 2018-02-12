@@ -11,6 +11,13 @@
 		033F035F200D681100E5ED63 /* AstronautAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F035D200D681100E5ED63 /* AstronautAction.cpp */; };
 		033F0360200D6F1800E5ED63 /* AstronautAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F035D200D681100E5ED63 /* AstronautAction.cpp */; };
 		033F0361200D6F1B00E5ED63 /* AstronautGoal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033F0358200D621000E5ED63 /* AstronautGoal.cpp */; };
+		0340F5A82032168E00D166EC /* libyaml-cpp.0.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340F5A72032168E00D166EC /* libyaml-cpp.0.6.0.dylib */; };
+		0340F5A92032169600D166EC /* libyaml-cpp.0.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340F5A72032168E00D166EC /* libyaml-cpp.0.6.0.dylib */; };
+		0340F6032032187B00D166EC /* yaml-cpp in Resources */ = {isa = PBXBuildFile; fileRef = 0340F6022032187B00D166EC /* yaml-cpp */; };
+		0340F6042032187B00D166EC /* yaml-cpp in Resources */ = {isa = PBXBuildFile; fileRef = 0340F6022032187B00D166EC /* yaml-cpp */; };
+		0340F6072032471E00D166EC /* ObjectInteraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F6052032471E00D166EC /* ObjectInteraction.cpp */; };
+		0340F6082032471E00D166EC /* ObjectInteraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F6052032471E00D166EC /* ObjectInteraction.cpp */; };
+		0340F6092032471E00D166EC /* ObjectInteraction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0340F6062032471E00D166EC /* ObjectInteraction.hpp */; };
 		036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 036BAA2A201413560021EE81 /* AstronautRoute.cpp */; };
 		0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
@@ -24,6 +31,8 @@
 		03C9E30B202CE6F900FDB02C /* YUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03C9E308202CDFD000FDB02C /* YUIView.cpp */; };
 		03C9E30F202CF09000FDB02C /* YUILabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03C9E30D202CF09000FDB02C /* YUILabel.cpp */; };
 		03C9E310202CF13C00FDB02C /* YUILabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03C9E30D202CF09000FDB02C /* YUILabel.cpp */; };
+		03C9E312202F877E00FDB02C /* content in Resources */ = {isa = PBXBuildFile; fileRef = 03C9E311202F877D00FDB02C /* content */; };
+		03C9E313202F877E00FDB02C /* content in Resources */ = {isa = PBXBuildFile; fileRef = 03C9E311202F877D00FDB02C /* content */; };
 		03CCBAA61FF415CD001D30F4 /* FractalNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAA21FF415CD001D30F4 /* FractalNoise.cpp */; };
 		03CCBAA71FF415CD001D30F4 /* FractalNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAA21FF415CD001D30F4 /* FractalNoise.cpp */; };
 		03CCBAA81FF415CD001D30F4 /* Perlin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03CCBAA51FF415CD001D30F4 /* Perlin.cpp */; };
@@ -40,14 +49,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
-		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
-		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
-		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
-		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
-		46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
-		46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
-		46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
-		46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
@@ -140,6 +141,10 @@
 		033F0359200D621000E5ED63 /* AstronautGoal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautGoal.hpp; sourceTree = "<group>"; };
 		033F035D200D681100E5ED63 /* AstronautAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautAction.cpp; sourceTree = "<group>"; };
 		033F035E200D681100E5ED63 /* AstronautAction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautAction.hpp; sourceTree = "<group>"; };
+		0340F5A72032168E00D166EC /* libyaml-cpp.0.6.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.6.0.dylib"; sourceTree = "<group>"; };
+		0340F6022032187B00D166EC /* yaml-cpp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "yaml-cpp"; sourceTree = "<group>"; };
+		0340F6052032471E00D166EC /* ObjectInteraction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectInteraction.cpp; sourceTree = "<group>"; };
+		0340F6062032471E00D166EC /* ObjectInteraction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectInteraction.hpp; sourceTree = "<group>"; };
 		036BAA2A201413560021EE81 /* AstronautRoute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautRoute.cpp; sourceTree = "<group>"; };
 		036BAA2B201413560021EE81 /* AstronautRoute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautRoute.hpp; sourceTree = "<group>"; };
 		0395B9412009749400EE31E2 /* Astronaut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Astronaut.cpp; sourceTree = "<group>"; };
@@ -154,6 +159,7 @@
 		03C9E309202CDFD000FDB02C /* YUIView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = YUIView.hpp; sourceTree = "<group>"; };
 		03C9E30D202CF09000FDB02C /* YUILabel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YUILabel.cpp; sourceTree = "<group>"; };
 		03C9E30E202CF09000FDB02C /* YUILabel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = YUILabel.hpp; sourceTree = "<group>"; };
+		03C9E311202F877D00FDB02C /* content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = content; sourceTree = "<group>"; };
 		03CCBAA21FF415CD001D30F4 /* FractalNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FractalNoise.cpp; sourceTree = "<group>"; };
 		03CCBAA31FF415CD001D30F4 /* Perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perlin.h; sourceTree = "<group>"; };
 		03CCBAA41FF415CD001D30F4 /* FractalNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FractalNoise.h; sourceTree = "<group>"; };
@@ -162,7 +168,6 @@
 		03CCBAAB1FF45AAA001D30F4 /* MapObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapObject.hpp; sourceTree = "<group>"; };
 		03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectDesign.cpp; sourceTree = "<group>"; };
 		03CCBAB01FF45BBF001D30F4 /* ObjectDesign.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectDesign.hpp; sourceTree = "<group>"; };
-		03CCBAB31FF45D18001D30F4 /* ObjectType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectType.h; sourceTree = "<group>"; };
 		03CCBAB81FF4672C001D30F4 /* DataStore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataStore.cpp; sourceTree = "<group>"; };
 		03CCBAB91FF4672C001D30F4 /* DataStore.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataStore.hpp; sourceTree = "<group>"; };
 		03F433211FFD866C004700AA /* Coord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Coord.h; sourceTree = "<group>"; };
@@ -173,10 +178,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
-		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
-		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
-		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
@@ -245,6 +246,7 @@
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
 				D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */,
+				0340F5A82032168E00D166EC /* libyaml-cpp.0.6.0.dylib in Frameworks */,
 				D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +258,7 @@
 				ED545A7E1B68A1FA00C3958E /* libiconv.dylib in Frameworks */,
 				1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */,
 				5087E76717EB910900C73F5D /* libz.dylib in Frameworks */,
+				0340F5A92032169600D166EC /* libyaml-cpp.0.6.0.dylib in Frameworks */,
 				8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */,
 				503AE11B17EB9C5A00D1A890 /* IOKit.framework in Frameworks */,
 				5087E78B17EB975400C73F5D /* OpenGL.framework in Frameworks */,
@@ -348,6 +351,7 @@
 		03CCBA9F1FF415AA001D30F4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				0340F6022032187B00D166EC /* yaml-cpp */,
 				03CCBAA11FF415BA001D30F4 /* PerlinNoise */,
 			);
 			name = Util;
@@ -368,7 +372,8 @@
 			isa = PBXGroup;
 			children = (
 				03F433211FFD866C004700AA /* Coord.h */,
-				03CCBAB31FF45D18001D30F4 /* ObjectType.h */,
+				0340F6052032471E00D166EC /* ObjectInteraction.cpp */,
+				0340F6062032471E00D166EC /* ObjectInteraction.hpp */,
 				03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */,
 				03CCBAB01FF45BBF001D30F4 /* ObjectDesign.hpp */,
 				03CCBAB81FF4672C001D30F4 /* DataStore.cpp */,
@@ -428,6 +433,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0340F5A72032168E00D166EC /* libyaml-cpp.0.6.0.dylib */,
 				294D0D631D0D56D500F7F5D4 /* CoreText.framework */,
 				ED545A7D1B68A1FA00C3958E /* libiconv.dylib */,
 				ED545A7B1B68A1F400C3958E /* libiconv.dylib */,
@@ -455,11 +461,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				03C9E311202F877D00FDB02C /* content */,
 				521A8EA819F11F5000D177D7 /* fonts */,
-				3EACC98E19EE6D4300EB3C5E /* res */,
-				46880B7619C43A67006E1F66 /* CloseNormal.png */,
-				46880B7719C43A67006E1F66 /* CloseSelected.png */,
-				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -528,12 +531,24 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		03C9E38A202FB58400FDB02C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0340F6092032471E00D166EC /* ObjectInteraction.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		1D6058900D05DD3D006BFB54 /* nirgal-mobile */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "nirgal-mobile" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
+				03C9E38A202FB58400FDB02C /* Headers */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 			);
@@ -633,8 +648,6 @@
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
-				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
-				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
@@ -644,12 +657,12 @@
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
-				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				03C9E312202F877E00FDB02C /* content in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
-				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				0340F6032032187B00D166EC /* yaml-cpp in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,12 +671,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
+				03C9E313202F877E00FDB02C /* content in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
-				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
-				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
-				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				0340F6042032187B00D166EC /* yaml-cpp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +690,7 @@
 				03C9E30A202CDFD000FDB02C /* YUIView.cpp in Sources */,
 				033F035F200D681100E5ED63 /* AstronautAction.cpp in Sources */,
 				036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */,
+				0340F6072032471E00D166EC /* ObjectInteraction.cpp in Sources */,
 				033F035A200D621000E5ED63 /* AstronautGoal.cpp in Sources */,
 				0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -712,6 +724,7 @@
 				03C9E30B202CE6F900FDB02C /* YUIView.cpp in Sources */,
 				03A53A821FDB3D520053F265 /* SCMainMenu.cpp in Sources */,
 				033F0361200D6F1B00E5ED63 /* AstronautGoal.cpp in Sources */,
+				0340F6082032471E00D166EC /* ObjectInteraction.cpp in Sources */,
 				03C9E310202CF13C00FDB02C /* YUILabel.cpp in Sources */,
 				033F0360200D6F1800E5ED63 /* AstronautAction.cpp in Sources */,
 			);
@@ -753,7 +766,12 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/yaml-cpp/test/gtest-1.8.0/googlemock/gtest/Debug",
+					"$(PROJECT_DIR)/yaml-cpp/test/gtest-1.8.0/googlemock/Debug",
+					"$(PROJECT_DIR)/yaml-cpp/Debug",
+				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
@@ -785,7 +803,12 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/yaml-cpp/test/gtest-1.8.0/googlemock/gtest/Debug",
+					"$(PROJECT_DIR)/yaml-cpp/test/gtest-1.8.0/googlemock/Debug",
+					"$(PROJECT_DIR)/yaml-cpp/Debug",
+				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
@@ -818,9 +841,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+					"$(SRCROOT)/include",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
@@ -848,9 +872,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+					"$(SRCROOT)/include",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
