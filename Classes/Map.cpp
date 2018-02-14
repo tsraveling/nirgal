@@ -303,50 +303,52 @@ Map::Map() {
     
     // Now add the objects
     
+    // TODO: This should eventually be handled in a data file so that startup is also moddable.
+    
     // Suitports along the top
-    this->addObject(new MapObject(suitPort, lander_x + 3, lander_y + 7, orientNormal));
-    this->addObject(new MapObject(suitPort, lander_x + 4, lander_y + 7, orientNormal));
+    this->addObject(new MapObject("suitport", lander_x + 3, lander_y + 7, orientNormal));
+    this->addObject(new MapObject("suitport", lander_x + 4, lander_y + 7, orientNormal));
     
     // Landing struts
-    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 6, orient180));
-    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 6, orient270));
-    this->addObject(new MapObject(landingStrut, lander_x + 1, lander_y + 1, orient90));
-    this->addObject(new MapObject(landingStrut, lander_x + 6, lander_y + 1, orientNormal));
+    this->addObject(new MapObject("landing-strut", lander_x + 1, lander_y + 6, orient180));
+    this->addObject(new MapObject("landing-strut", lander_x + 6, lander_y + 6, orient270));
+    this->addObject(new MapObject("landing-strut", lander_x + 1, lander_y + 1, orient90));
+    this->addObject(new MapObject("landing-strut", lander_x + 6, lander_y + 1, orientNormal));
     
     // Water and food and oxygen stations
-    this->addObject(new MapObject(waterStation, lander_x + 2, lander_y + 6, orientNormal));
-    this->addObject(new MapObject(smallFoodStation, lander_x + 5, lander_y + 6, orientNormal));
-    this->addObject(new MapObject(atmosphereTank, lander_x + 1, lander_y + 5, orientNormal));
+    this->addObject(new MapObject("water-station", lander_x + 2, lander_y + 6, orientNormal));
+    this->addObject(new MapObject("small-food-station", lander_x + 5, lander_y + 6, orientNormal));
+    this->addObject(new MapObject("atmosphere-tank", lander_x + 1, lander_y + 5, orientNormal));
     
     // Crash couches
-    this->addObject(new MapObject(crashCouch, lander_x + 2, lander_y + 4, orientNormal));
-    this->addObject(new MapObject(crashCouch, lander_x + 3, lander_y + 5, orientNormal));
-    this->addObject(new MapObject(crashCouch, lander_x + 4, lander_y + 5, orientNormal));
-    this->addObject(new MapObject(crashCouch, lander_x + 5, lander_y + 4, orientNormal));
+    this->addObject(new MapObject("crash-couch", lander_x + 2, lander_y + 4, orientNormal));
+    this->addObject(new MapObject("crash-couch", lander_x + 3, lander_y + 5, orientNormal));
+    this->addObject(new MapObject("crash-couch", lander_x + 4, lander_y + 5, orientNormal));
+    this->addObject(new MapObject("crash-couch", lander_x + 5, lander_y + 4, orientNormal));
     
     // Computers
-    this->addObject(new MapObject(landingComputer, lander_x + 1, lander_y + 2, orient270));
-    this->addObject(new MapObject(landingComputer, lander_x + 3, lander_y + 1, orient180));
-    this->addObject(new MapObject(landingComputer, lander_x + 5, lander_y + 1, orient180));
-    this->addObject(new MapObject(landingComputer, lander_x + 6, lander_y + 3, orient90));
+    this->addObject(new MapObject("landing-computer", lander_x + 1, lander_y + 2, orient270));
+    this->addObject(new MapObject("landing-computer", lander_x + 3, lander_y + 1, orient180));
+    this->addObject(new MapObject("landing-computer", lander_x + 5, lander_y + 1, orient180));
+    this->addObject(new MapObject("landing-computer", lander_x + 6, lander_y + 3, orient90));
     
     // Crates
-    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 2, orientNormal));
-    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 3, orientNormal));
-    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 4, orientNormal));
-    this->addObject(new MapObject(landerCrate, lander_x + 0, lander_y + 5, orientNormal));
+    this->addObject(new MapObject("lander-crate", lander_x + 0, lander_y + 2, orientNormal));
+    this->addObject(new MapObject("lander-crate", lander_x + 0, lander_y + 3, orientNormal));
+    this->addObject(new MapObject("lander-crate", lander_x + 0, lander_y + 4, orientNormal));
+    this->addObject(new MapObject("lander-crate", lander_x + 0, lander_y + 5, orientNormal));
     
     // Solar Panels
-    this->addObject(new MapObject(landerSolarPanel, lander_x + 2, lander_y + 0, orientNormal));
-    this->addObject(new MapObject(landerSolarPanel, lander_x + 3, lander_y + 0, orientNormal));
-    this->addObject(new MapObject(landerSolarPanel, lander_x + 4, lander_y + 0, orientNormal));
-    this->addObject(new MapObject(landerSolarPanel, lander_x + 5, lander_y + 0, orientNormal));
+    this->addObject(new MapObject("lander-solar-panel", lander_x + 2, lander_y + 0, orientNormal));
+    this->addObject(new MapObject("lander-solar-panel", lander_x + 3, lander_y + 0, orientNormal));
+    this->addObject(new MapObject("lander-solar-panel", lander_x + 4, lander_y + 0, orientNormal));
+    this->addObject(new MapObject("lander-solar-panel", lander_x + 5, lander_y + 0, orientNormal));
     
     // Tanks
-    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 2, orientNormal));
-    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 3, orientNormal));
-    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 4, orientNormal));
-    this->addObject(new MapObject(landerLiquidTank, lander_x + 7, lander_y + 5, orientNormal));
+    this->addObject(new MapObject("lander-liquid-tank", lander_x + 7, lander_y + 2, orientNormal));
+    this->addObject(new MapObject("lander-liquid-tank", lander_x + 7, lander_y + 3, orientNormal));
+    this->addObject(new MapObject("lander-liquid-tank", lander_x + 7, lander_y + 4, orientNormal));
+    this->addObject(new MapObject("lander-liquid-tank", lander_x + 7, lander_y + 5, orientNormal));
     
     // Astronauts
     this->astronauts.push_back(new Astronaut("John", "astronaut_01", lander_x + 2, lander_y + 4));

@@ -9,6 +9,17 @@
 
 DataStore *dataStoreSingleton;
 
+ObjectDesign* DataStore::objectDesignForTag(string tag) {
+    
+    for (ObjectDesign *design : DataStore::singleton()->designs) {
+        
+        if (design->key == tag)
+            return design;
+    }
+    
+    return NULL;
+}
+
 DataStore* DataStore::singleton() {
     return dataStoreSingleton;
 }
@@ -51,7 +62,10 @@ void DataStore::populateData() {
                 // Get the file key
                 auto subfile_key = subfile_it->as<string>();
                 
-                
+                // Get the file
+                auto path = "content/" + load_tag + "/" + manifest_node_key + "/" + subfile_key + ".yaml";
+                printf("Loading file from path: %s\n", path.c_str());
+                YAML::Node content_file = YAML::LoadFile(path);
             }
         }
     }

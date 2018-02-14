@@ -28,18 +28,6 @@ void SCGame::tick(float time) {
 
 #pragma mark - Map interface
 
-void SCGame::addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation) {
-    
-    // Generate the object
-    MapObject *ob = new MapObject(t, x, y, orientation);
-    
-    // Add the sprite tuple
-    this->generateSpriteTupleForObject(ob);
-    
-    // Add the object to the map
-    this->map.addObject(ob);
-}
-
 void SCGame::generateObjectSprites() {
     
     for (MapObject *ob : this->map.objects) {

@@ -48,7 +48,6 @@ public:
     YUILabel *panelLabel;
     
     // Map interface functions
-    void addMapObject(ObjectType t, int x, int y, ObjectOrientation orientation);
     void generateObjectSprites();
     void generateSpriteTupleForObject(MapObject *ob);
     

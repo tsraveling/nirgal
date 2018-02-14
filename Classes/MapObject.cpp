@@ -7,9 +7,17 @@
 
 #include "MapObject.hpp"
 
-MapObject::MapObject(ObjectType t, int x, int y, ObjectOrientation orientation) {
+MapObject::MapObject(ObjectDesign *design, int x, int y, ObjectOrientation orientation) {
     
-    this->type = t;
+    this->design = design;
+    this->x = x;
+    this->y = y;
+    this->orientation = orientation;
+}
+
+MapObject::MapObject(string design_tag, int x, int y, ObjectOrientation orientation) {
+    
+    this->design = DataStore::objectDesignForTag(design_tag);
     this->x = x;
     this->y = y;
     this->orientation = orientation;
@@ -17,8 +25,7 @@ MapObject::MapObject(ObjectType t, int x, int y, ObjectOrientation orientation) 
 
 string MapObject::spriteName() {
     
-    auto design = DataStore::designFor(this->type);
-    return design->baseSpriteName;
+    return this->design->baseSpriteName;
 }
 
 Coord MapObject::apparentPosition() {
@@ -27,11 +34,10 @@ Coord MapObject::apparentPosition() {
     loc.x = (float(this->x) * 64) + 32;
     loc.y = (float(this->y) * 64) + 32;
     
-    auto design = DataStore::designFor(this->type);
-    if (design->width > 1 || design->height > 1) {
+    if (this->design->width > 1 || this->design->height > 1) {
         
-        float x_offset = (design->width - 1) * 32;
-        float y_offset = (design->height - 1) * 32;
+        float x_offset = (this->design->width - 1) * 32;
+        float y_offset = (this->design->height - 1) * 32;
         
         switch (this->orientation) {
             case orientNormal:

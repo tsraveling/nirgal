@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <vector>
 #include "ObjectDesign.hpp"
+#include "AstronautDesign.hpp"
 #include "yaml-cpp/yaml.h"
 
 using namespace std;
@@ -21,12 +22,16 @@ public:
     static void populateData();
     static DataStore* singleton();
     
+    static ObjectDesign *objectDesignForTag(string tag);
+    
     vector<ObjectDesign*> designs;
     vector<string> spriteSheets;
     
 private:
-    ObjectDesign *designForNode(YAML::Node node);
-    void onboardNode(YAML::Node node);
+    
+    ObjectDesign *objectDesignForNode(YAML::Node node);
+    AstronautDesign *astronautDesignForNode(YAML::Node node);
+    void onboardNodeFile(YAML::Node node);
 };
 
 #endif /* DataStore_hpp */

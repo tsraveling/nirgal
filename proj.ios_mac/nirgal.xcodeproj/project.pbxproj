@@ -18,6 +18,9 @@
 		0340F6072032471E00D166EC /* ObjectInteraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F6052032471E00D166EC /* ObjectInteraction.cpp */; };
 		0340F6082032471E00D166EC /* ObjectInteraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F6052032471E00D166EC /* ObjectInteraction.cpp */; };
 		0340F6092032471E00D166EC /* ObjectInteraction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0340F6062032471E00D166EC /* ObjectInteraction.hpp */; };
+		0340F60E203247C500D166EC /* AstronautDesign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F60C203247C500D166EC /* AstronautDesign.cpp */; };
+		0340F60F203247C500D166EC /* AstronautDesign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F60C203247C500D166EC /* AstronautDesign.cpp */; };
+		0340F610203247C500D166EC /* AstronautDesign.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0340F60D203247C500D166EC /* AstronautDesign.hpp */; };
 		036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 036BAA2A201413560021EE81 /* AstronautRoute.cpp */; };
 		0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
@@ -145,6 +148,8 @@
 		0340F6022032187B00D166EC /* yaml-cpp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "yaml-cpp"; sourceTree = "<group>"; };
 		0340F6052032471E00D166EC /* ObjectInteraction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectInteraction.cpp; sourceTree = "<group>"; };
 		0340F6062032471E00D166EC /* ObjectInteraction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectInteraction.hpp; sourceTree = "<group>"; };
+		0340F60C203247C500D166EC /* AstronautDesign.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautDesign.cpp; sourceTree = "<group>"; };
+		0340F60D203247C500D166EC /* AstronautDesign.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautDesign.hpp; sourceTree = "<group>"; };
 		036BAA2A201413560021EE81 /* AstronautRoute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautRoute.cpp; sourceTree = "<group>"; };
 		036BAA2B201413560021EE81 /* AstronautRoute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautRoute.hpp; sourceTree = "<group>"; };
 		0395B9412009749400EE31E2 /* Astronaut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Astronaut.cpp; sourceTree = "<group>"; };
@@ -289,6 +294,26 @@
 			name = Astronauts;
 			sourceTree = "<group>";
 		};
+		0340F60A203247AF00D166EC /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				0340F6052032471E00D166EC /* ObjectInteraction.cpp */,
+				0340F6062032471E00D166EC /* ObjectInteraction.hpp */,
+				03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */,
+				03CCBAB01FF45BBF001D30F4 /* ObjectDesign.hpp */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		0340F60B203247B500D166EC /* Astronauts */ = {
+			isa = PBXGroup;
+			children = (
+				0340F60C203247C500D166EC /* AstronautDesign.cpp */,
+				0340F60D203247C500D166EC /* AstronautDesign.hpp */,
+			);
+			name = Astronauts;
+			sourceTree = "<group>";
+		};
 		03A53A701FDB3CB50053F265 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,11 +396,9 @@
 		03CCBAAE1FF45BAA001D30F4 /* Designs */ = {
 			isa = PBXGroup;
 			children = (
+				0340F60B203247B500D166EC /* Astronauts */,
+				0340F60A203247AF00D166EC /* Objects */,
 				03F433211FFD866C004700AA /* Coord.h */,
-				0340F6052032471E00D166EC /* ObjectInteraction.cpp */,
-				0340F6062032471E00D166EC /* ObjectInteraction.hpp */,
-				03CCBAAF1FF45BBF001D30F4 /* ObjectDesign.cpp */,
-				03CCBAB01FF45BBF001D30F4 /* ObjectDesign.hpp */,
 				03CCBAB81FF4672C001D30F4 /* DataStore.cpp */,
 				03CCBAB91FF4672C001D30F4 /* DataStore.hpp */,
 			);
@@ -536,6 +559,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0340F610203247C500D166EC /* AstronautDesign.hpp in Headers */,
 				0340F6092032471E00D166EC /* ObjectInteraction.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -692,6 +716,7 @@
 				036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */,
 				0340F6072032471E00D166EC /* ObjectInteraction.cpp in Sources */,
 				033F035A200D621000E5ED63 /* AstronautGoal.cpp in Sources */,
+				0340F60E203247C500D166EC /* AstronautDesign.cpp in Sources */,
 				0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				03CCBAAC1FF45AAA001D30F4 /* MapObject.cpp in Sources */,
@@ -717,6 +742,7 @@
 				03CCBAB21FF45BBF001D30F4 /* ObjectDesign.cpp in Sources */,
 				03C568C11FE1D26500DA7D6A /* Map.cpp in Sources */,
 				03CCBAAD1FF45AAA001D30F4 /* MapObject.cpp in Sources */,
+				0340F60F203247C500D166EC /* AstronautDesign.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */,
 				03CCBAA91FF415CD001D30F4 /* Perlin.cpp in Sources */,

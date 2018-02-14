@@ -14,13 +14,13 @@ objects:
         name: Suit up
         description: Put on a spacesuit!
         type: suitUp
-        duration: 30s
+        duration: 30.0
         position: 0, 1
       suit-down:
         name: Take off spacesuit
         description: Get out of your spacesuit and back into a pressurized environment
         type: suitDown
-        duration: 30s
+        duration: 30.0
         position: 0, 0
   lander-crate:
     name: Cargo Container

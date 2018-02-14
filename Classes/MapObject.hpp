@@ -26,10 +26,11 @@ public:
     // Item variables
     int x, y;
     ObjectOrientation orientation;
-    ObjectType type;
+    ObjectDesign *design;
     
     // Initialization
-    MapObject(ObjectType t, int x, int y, ObjectOrientation orientation);
+    MapObject(ObjectDesign *design, int x, int y, ObjectOrientation orientation);
+    MapObject(string design_tag, int x, int y, ObjectOrientation orientation);
     
     // Interface functions
     string spriteName();
