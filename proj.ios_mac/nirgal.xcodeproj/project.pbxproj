@@ -14,7 +14,6 @@
 		0340F5A82032168E00D166EC /* libyaml-cpp.0.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340F5A72032168E00D166EC /* libyaml-cpp.0.6.0.dylib */; };
 		0340F5A92032169600D166EC /* libyaml-cpp.0.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340F5A72032168E00D166EC /* libyaml-cpp.0.6.0.dylib */; };
 		0340F6032032187B00D166EC /* yaml-cpp in Resources */ = {isa = PBXBuildFile; fileRef = 0340F6022032187B00D166EC /* yaml-cpp */; };
-		0340F6042032187B00D166EC /* yaml-cpp in Resources */ = {isa = PBXBuildFile; fileRef = 0340F6022032187B00D166EC /* yaml-cpp */; };
 		0340F6072032471E00D166EC /* ObjectInteraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F6052032471E00D166EC /* ObjectInteraction.cpp */; };
 		0340F6082032471E00D166EC /* ObjectInteraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F6052032471E00D166EC /* ObjectInteraction.cpp */; };
 		0340F6092032471E00D166EC /* ObjectInteraction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0340F6062032471E00D166EC /* ObjectInteraction.hpp */; };
@@ -314,6 +313,13 @@
 			name = Astronauts;
 			sourceTree = "<group>";
 		};
+		034D29DE2048C0F200AFE0F9 /* Terrains */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Terrains;
+			sourceTree = "<group>";
+		};
 		03A53A701FDB3CB50053F265 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +402,7 @@
 		03CCBAAE1FF45BAA001D30F4 /* Designs */ = {
 			isa = PBXGroup;
 			children = (
+				034D29DE2048C0F200AFE0F9 /* Terrains */,
 				0340F60B203247B500D166EC /* Astronauts */,
 				0340F60A203247AF00D166EC /* Objects */,
 				03F433211FFD866C004700AA /* Coord.h */,
@@ -698,7 +705,6 @@
 				03C9E313202F877E00FDB02C /* content in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
-				0340F6042032187B00D166EC /* yaml-cpp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,14 +23,14 @@ public:
     static DataStore* singleton();
     
     static ObjectDesign *objectDesignForTag(string tag);
+    static AstronautDesign *astronautDesignForTag(string tag);
     
-    vector<ObjectDesign*> designs;
+    vector<ObjectDesign*> objectDesigns;
+    vector<AstronautDesign*> astronautDesigns;
     vector<string> spriteSheets;
     
 private:
     
-    ObjectDesign *objectDesignForNode(YAML::Node node);
-    AstronautDesign *astronautDesignForNode(YAML::Node node);
     void onboardNodeFile(YAML::Node node);
 };
 

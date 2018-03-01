@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "SCMainMenu.h"
+#include "DataStore.hpp"
 
 USING_NS_CC;
 
@@ -78,6 +79,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
      */
 
     register_all_packages();
+    
+    // Load up the game data
+    DataStore::populateData();
 
     // create a scene. it's an autorelease object
     auto scene = SCMainMenu::createScene();

@@ -144,9 +144,6 @@ bool SCGame::init()
     cache->addSpriteFramesWithFile("res/characters/astronauts.plist");
      */
     
-    // Load the object data
-    DataStore::populateData();
-    
     return true;
     
     // Lay out the lander in the terrain data

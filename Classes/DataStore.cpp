@@ -11,7 +11,18 @@ DataStore *dataStoreSingleton;
 
 ObjectDesign* DataStore::objectDesignForTag(string tag) {
     
-    for (ObjectDesign *design : DataStore::singleton()->designs) {
+    for (ObjectDesign *design : DataStore::singleton()->objectDesigns) {
+        
+        if (design->key == tag)
+            return design;
+    }
+    
+    return NULL;
+}
+
+AstronautDesign* astronautDesignForTag(string tag) {
+    
+    for (AstronautDesign *design : DataStore::singleton()->astronautDesigns) {
         
         if (design->key == tag)
             return design;
@@ -66,7 +77,76 @@ void DataStore::populateData() {
                 auto path = "content/" + load_tag + "/" + manifest_node_key + "/" + subfile_key + ".yaml";
                 printf("Loading file from path: %s\n", path.c_str());
                 YAML::Node content_file = YAML::LoadFile(path);
+                
+                // Onboard the file
+                DataStore::singleton()->onboardNodeFile(content_file);
             }
         }
     }
+}
+
+void DataStore::onboardNodeFile(YAML::Node node) {
+    
+    // Check for sprites
+    auto sprites = node["sprite-sheets"];
+    if (sprites != NULL) {
+        assert(sprites.IsSequence());
+        
+        // If we have sprites and they're formatted as a sequence, grab em
+        for (YAML::const_iterator sprite_it = sprites.begin(); sprite_it != sprites.end(); ++sprite_it) {
+            
+            auto sprite_sheet = sprite_it->as<string>();
+            this->spriteSheets.push_back(sprite_sheet);
+        }
+    }
+    
+    // Check for astronauts
+    auto astronauts = node["astronauts"];
+    if (astronauts != NULL) {
+        assert(astronauts.IsMap());
+        
+        // Now go through the subsets of the manifest and load those files
+        for (YAML::const_iterator astro_it = astronauts.begin(); astro_it != astronauts.end(); ++astro_it) {
+            
+            // Get the key for the astronaut
+            auto astro_key = astro_it->first.as<string>();
+            
+            // Get the node for the astronaut's contents
+            auto astro_node = astro_it->second.as<YAML::Node>();
+            
+            auto design = AstronautDesign::astronautDesignForNode(astro_node);
+            if (design != NULL) {
+                
+                design->key = astro_key;
+                printf("Adding astronaut: %s\n",astro_key.c_str());
+                this->singleton()->astronautDesigns.push_back(design);
+            }
+        }
+    }
+    
+    // Check for objects
+    auto objects = node["objects"];
+    if (objects != NULL) {
+        assert(objects.IsMap());
+        
+        // Now go through the subsets of the manifest and load those files
+        for (YAML::const_iterator it = objects.begin(); it != objects.end(); ++it) {
+            
+            // Get the key for the object design
+            auto object_key = it->first.as<string>();
+            
+            // Get the node for the object's contents
+            auto object_node = it->second.as<YAML::Node>();
+            
+            auto design = ObjectDesign::objectDesignForNode(object_node);
+            if (design != NULL) {
+                
+                design->key = object_key;
+                printf("Adding object: %s\n",object_key.c_str());
+                this->singleton()->objectDesigns.push_back(design);
+            }
+        }
+    }
+    
+    // TODO: Check for terrains
 }

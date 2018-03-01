@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "Coord.h"
+#include "yaml-cpp/yaml.h"
 
 using namespace std;
 

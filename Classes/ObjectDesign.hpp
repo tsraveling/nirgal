@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <vector>
 #include "ObjectInteraction.hpp"
+#include "yaml-cpp/yaml.h"
 
 using namespace std;
 
@@ -25,6 +26,10 @@ public:
     string baseSpriteName;
     
     vector<ObjectInteraction> interactions;
+    
+    ObjectDesign();
+    
+    static ObjectDesign *objectDesignForNode(YAML::Node node);
 };
 
 #endif /* ObjectDesign_hpp */
