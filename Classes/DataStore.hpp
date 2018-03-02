@@ -31,7 +31,7 @@ public:
     
 private:
     
-    void onboardNodeFile(YAML::Node node);
+    void onboardNodeFile(YAML::Node node, string path);
 };
 
 #endif /* DataStore_hpp */

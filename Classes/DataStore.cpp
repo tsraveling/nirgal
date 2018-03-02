@@ -74,18 +74,19 @@ void DataStore::populateData() {
                 auto subfile_key = subfile_it->as<string>();
                 
                 // Get the file
-                auto path = "content/" + load_tag + "/" + manifest_node_key + "/" + subfile_key + ".yaml";
+                auto basepath = "content/" + load_tag + "/" + manifest_node_key + "/";
+                auto path = basepath + subfile_key + ".yaml";
                 printf("Loading file from path: %s\n", path.c_str());
                 YAML::Node content_file = YAML::LoadFile(path);
                 
                 // Onboard the file
-                DataStore::singleton()->onboardNodeFile(content_file);
+                DataStore::singleton()->onboardNodeFile(content_file, basepath);
             }
         }
     }
 }
 
-void DataStore::onboardNodeFile(YAML::Node node) {
+void DataStore::onboardNodeFile(YAML::Node node, string path) {
     
     // Check for sprites
     auto sprites = node["sprite-sheets"];
@@ -96,7 +97,7 @@ void DataStore::onboardNodeFile(YAML::Node node) {
         for (YAML::const_iterator sprite_it = sprites.begin(); sprite_it != sprites.end(); ++sprite_it) {
             
             auto sprite_sheet = sprite_it->as<string>();
-            this->spriteSheets.push_back(sprite_sheet);
+            this->spriteSheets.push_back(path + sprite_sheet + ".plist");
         }
     }
     

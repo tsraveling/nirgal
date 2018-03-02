@@ -551,7 +551,6 @@ void Map::regenerateTiles(int x1, int y1, int x2, int y2) {
                 this->overlayTile[x][y] = nope;
             }
         }
-        printf("\n\n");
     }
 }
 
