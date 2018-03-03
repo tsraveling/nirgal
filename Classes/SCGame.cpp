@@ -14,11 +14,11 @@ USING_NS_CC;
 void SCGame::tick(float time) {
     
     // Run the astronauts
-    for (AstronautSprite os : this->astronautSpritePairs) {
+    for (AstronautSprite *os : this->astronautSprites) {
         
         // Process astronaut logic and update the sprite if needed
-        if (os.first->tick(&this->map, time)) {
-            this->updateSpriteTuple(&os);
+        if (os->astronaut->tick(&this->map, time)) {
+            os->updatePosition();
         }
     }
     
@@ -28,23 +28,7 @@ void SCGame::tick(float time) {
 
 #pragma mark - Map interface
 
-void SCGame::generateObjectSprites() {
-    
-    for (MapObject *ob : this->map.objects) {
-        
-        this->generateSpriteTupleForObject(ob);
-    }
-}
-
-void SCGame::generateAstronautSprites() {
-    
-    for (Astronaut *astronaut : this->map.astronauts) {
-        
-        this->generateSpriteTupleForAstronaut(astronaut);
-    }
-}
-
-void SCGame::generateSpriteTupleForObject(MapObject *ob) {
+void SCGame::generateSpriteObject(MapObject *ob) {
     
     // TODO: Check for extant sprites
     
@@ -65,33 +49,39 @@ void SCGame::generateSpriteTupleForObject(MapObject *ob) {
     
     this->mapLayer->addChild(sprite);
     
-    // Create and add the tuple
-    ObjectSprite os = ObjectSprite(ob, sprite);
-    this->objectSpritePairs.push_back(os);
+    // Create the sprite object
+    ObjectSprite *os = new ObjectSprite();
+    os->sprite = sprite;
+    os->object = ob;
+    this->objectSprites.push_back(os);
 }
 
-void SCGame::generateSpriteTupleForAstronaut(Astronaut *astronaut) {
+void SCGame::generateSpriteAstronaut(Astronaut *astronaut) {
     
     // TODO: Check for extant sprites
     
-    // Add the sprite
-    string frame_name = astronaut->sprite();
-    Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
+    // Link the astronaut game object
+    AstronautSprite *os = new AstronautSprite;
+    os->astronaut = astronaut;
     
-    // Create and add the tuple
-    AstronautSprite os = AstronautSprite(astronaut, sprite);
-    this->astronautSpritePairs.push_back(os);
+    // Create the map sprite and selector
+    os->mapAstronautSprite = Sprite::createWithSpriteFrameName(astronaut->sprite());
+    os->mapAstronautSelector = Sprite::createWithSpriteFrameName("astronaut_selected.png");
+    os->mapAstronautSelector->setPosition(32, 32);
+    os->mapAstronautSprite->addChild(os->mapAstronautSelector);
+    os->updatePosition();
     
-    // Update the sprite
-    this->updateSpriteTuple(&os);
+    // Now create the roster sprite and selector
+    os->rosterAstronautSprite = Sprite::createWithSpriteFrameName(astronaut->sprite());
+    os->rosterAstronautSelector = Sprite::createWithSpriteFrameName("astronaut_selected.png");
+    os->rosterAstronautSelector->setPosition(32, 32);
+    os->rosterAstronautSprite->addChild(os->rosterAstronautSelector);
     
-    // Add the astronaut to the layer
-    this->mapLayer->addChild(sprite);
-}
-
-void SCGame::updateSpriteTuple(AstronautSprite *os) {
-    Coord pos = os->first->apparentPosition();
-    os->second->setPosition(pos.x, pos.y);
+    // Add the astronaut to the map layer
+    this->mapLayer->addChild(os->mapAstronautSprite);
+    
+    // Add it to the astronaut sprite list
+    this->astronautSprites.push_back(os);
 }
 
 #pragma mark - Initialization
@@ -134,9 +124,11 @@ bool SCGame::init()
     this->centerMapOn(this->map.startX, this->map.startY);
     this->addChild(this->mapLayer);
     
-    // Load the initial sprite sheets
-    
+    // Load hardcoded spritesheets
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+    cache->addSpriteFramesWithFile("ui/ui.plist");
+    
+    // Load content sprite sheets
     for (string spritesheet : DataStore::singleton()->spriteSheets) {
         
         printf("Loading spritesheet: %s\n",spritesheet.c_str());
@@ -180,10 +172,14 @@ bool SCGame::init()
     }
     
     // Now we're going to generate the lander object sprites
-    this->generateObjectSprites();
+    for (MapObject *ob : this->map.objects) {
+        this->generateSpriteObject(ob);
+    }
     
     // Now generate the astronaut sprites
-    this->generateAstronautSprites();
+    for (Astronaut *astronaut : this->map.astronauts) {
+        this->generateSpriteAstronaut(astronaut);
+    }
     
     // Set up the wall tiles
     for (int x=0; x < MAP_XS * 2; x++) {
@@ -219,45 +215,21 @@ bool SCGame::init()
     this->addChild(this->uiLayer);
     
     // Lay out the roster sprites
-    
     float roster_y = visibleSize.height - 64;
     float left = 32 + 10;
-    for (Astronaut *astronaut : this->map.astronauts) {
+    
+    for (AstronautSprite *as : this->astronautSprites) {
         
-        // Create the roster sprite
-        string frame_name = astronaut->sprite();
-        Sprite *sprite = Sprite::createWithSpriteFrameName(frame_name);
-        sprite->setPosition(left, roster_y);
-        this->uiLayer->addChild(sprite);
+        // Set roster position
+        as->rosterAstronautSprite->setPosition(left, roster_y);
         
-        // Create and add the tuple
-        AstronautSprite os = AstronautSprite(astronaut, sprite);
-        this->astronautRosterPairs.push_back(os);
+        // Add it to the UI panel and deselect it by default
+        as->setSelected(false);
+        this->uiLayer->addChild(as->rosterAstronautSprite);
         
         // Decrement y
         roster_y -= (64 + 10);
-        
-        // Set up selection
-        astronaut->isSelected = false;
     }
-    
-    this->updateAstronautSelection();
-    
-    // Let's try a fancy new YUIView
-    this->panelView = new YUIView(100, 200);
-    this->uiLayer->addChild(this->panelView);
-    this->panelView->anchorLeft(30);
-    this->panelView->anchorBottom(30);
-    this->panelView->anchorRight(30);
-    
-    // Now a fancy new YUILabel!
-    string text = "Lorem ipsum vel probatisim salomonis claviculae rabini hebraicim in quibus tum naturalia tum super naturalia secreta licet abditissima in promptu apparent, modò operator per necessaria et contenta faciat scia tamen oportet demonum potentia dum taxat per agantur.";
-    this->panelLabel = new YUILabel(text, 100, 100);
-    this->panelView->addSubview(this->panelLabel);
-    this->panelLabel->anchorLeft(20);
-    this->panelLabel->anchorTop(20);
-    this->panelLabel->anchorRight(20);
-    this->panelLabel->anchorBottom(20);
     
     // 3. Set up game logic and inputs
     // -------------------------------
@@ -289,19 +261,6 @@ bool SCGame::init()
 
 #pragma mark - UI Functions
 
-void SCGame::updateAstronautSelection() {
-    
-    // Update roster
-    for (AstronautSprite os : this->astronautRosterPairs) {
-        os.second->setColor(os.first->isSelected ? Color3B(255, 255, 255) : Color3B(200, 200, 200));
-    }
-    
-    // Update reality
-    for (AstronautSprite os : this->astronautSpritePairs) {
-        os.second->setColor(os.first->isSelected ? Color3B(255, 255, 255) : Color3B(200, 200, 200));
-    }
-}
-
 void SCGame::centerMapOn(int x, int y) {
     
     auto rx = float(x) * -64;
@@ -309,6 +268,23 @@ void SCGame::centerMapOn(int x, int y) {
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
     this->mapLayer->setPosition((visibleSize.width / 2) + rx, (visibleSize.height / 2) + ry);
+}
+
+void SCGame::selectAstronaut(AstronautSprite *os) {
+    
+    // Select this astronaut
+    os->setSelected(true);
+    
+    // If you're not holding down ctrl or shift unselect everyone else
+    if (!(keyHeldDown[14] || keyHeldDown[12] || keyHeldDown[13])) {
+        
+        for (AstronautSprite *naut_sprite : this->astronautSprites) {
+            
+            if (naut_sprite != os) {
+                naut_sprite->setSelected(false);
+            }
+        }
+    }
 }
 
 #pragma mark - Keyboard Input Methods
@@ -341,7 +317,6 @@ bool SCGame::onMouseDown(Event* event)
 
 void SCGame::onMouseUp(Event* event)
 {
-    cocos2d::log("mouseUp");
     // For now, we're just going to assume this is a mouse click. We'll deal with touch later,
     // if we ever go to tablets.
     try {
@@ -354,8 +329,6 @@ void SCGame::onMouseUp(Event* event)
         
         if (this->movedMouse <= 10) {
             
-            cocos2d::log("clicked %d", button);
-            
             // CLICK HANDLER
             // -------------
             
@@ -366,34 +339,21 @@ void SCGame::onMouseUp(Event* event)
             
             // Roster
             
-            for (AstronautSprite os : this->astronautRosterPairs) {
+            for (AstronautSprite *os : this->astronautSprites) {
                 
-                auto rect = os.second->getBoundingBox();
+                auto rect = os->rosterAstronautSprite->getBoundingBox();
                 
-                if (os.second->getBoundingBox().containsPoint(click)) {
+                if (os->rosterAstronautSprite->getBoundingBox().containsPoint(click)) {
                     
                     if (button == kMouseLeft) {
                         
-                        // Select this astronaut
-                        os.first->isSelected = true;
+                        this->selectAstronaut(os);
                         
-                        // If you're not holding down ctrl or shift unselect everyone else
-                        if (!(keyHeldDown[14] || keyHeldDown[12] || keyHeldDown[13])) {
-                        
-                            for (Astronaut *naut : this->map.astronauts) {
-                                
-                                if (naut != os.first)
-                                    naut->isSelected = false;
-                            }
-                            
-                            // Center on them
-                            this->centerMapOn(os.first->x, os.first->y);
-                            
-                        }
-                        
-                        this->updateAstronautSelection();
+                        // Center on them
+                        this->centerMapOn(os->astronaut->x, os->astronaut->y);
                     }
                     
+                    // Note that this means right clicks don't pass through either.
                     return;
                 }
             }
@@ -404,30 +364,16 @@ void SCGame::onMouseUp(Event* event)
             
             // Astronauts
             
-            for (AstronautSprite os : this->astronautSpritePairs) {
+            for (AstronautSprite *os : this->astronautSprites) {
                 
-                auto rect = os.second->getBoundingBox();
+                auto rect = os->mapAstronautSprite->getBoundingBox();
                 rect.origin += this->mapLayer->getPosition(); // Adjust for map position
                 
                 if (rect.containsPoint(click)) {
                     
                     if (button == kMouseLeft) {
                         
-                        // Reverse selection on this item
-                        os.first->isSelected = true;
-                        
-                        // If you're not holding down ctrl or shift unselect everyone else
-                        if (!(keyHeldDown[14] || keyHeldDown[12] || keyHeldDown[13])) {
-                            
-                            for (Astronaut *naut : this->map.astronauts) {
-                                
-                                if (naut != os.first)
-                                    naut->isSelected = false;
-                            }
-                        }
-                        
-                        this->updateAstronautSelection();
-                        
+                        this->selectAstronaut(os);
                         return;
                     }
                 }
@@ -444,12 +390,17 @@ void SCGame::onMouseUp(Event* event)
             
             if (button == kMouseRight) {
                 
+                printf("Issuing click to %d, %d\n",map_x,map_y);
+                
                 // Assign any selected astronauts to go there
-                for (Astronaut *naut : this->map.astronauts) {
-                    if (naut->isSelected) {
+                for (AstronautSprite *ns : this->astronautSprites) {
+                    
+                    if (ns->isSelected) {
+                        
+                        printf("Issuing order to %s\n",ns->astronaut->name.c_str());
                         
                         // Calculate path
-                        auto route = this->map.computeRoute(naut, map_x, map_y);
+                        auto route = this->map.computeRoute(ns->astronaut, map_x, map_y);
                         
                         // Make sure there IS a path
                         if (route != NULL) {
@@ -457,7 +408,7 @@ void SCGame::onMouseUp(Event* event)
                             // Create the goal and add the route to it
                             auto goal = new AstronautGoal(goalMovement);
                             goal->route = route;
-                            naut->setGoal(goal);
+                            ns->astronaut->setGoal(goal);
                             
                         } else {
                             

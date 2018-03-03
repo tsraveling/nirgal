@@ -13,17 +13,14 @@
 #include "Map.h"
 #include "YUIView.hpp"
 #include "YUILabel.hpp"
+#include "AstronautSprite.hpp"
+#include "ObjectSprite.cpp"
 
 using namespace std;
 
 #define GAME_LOOP_INTERVAL  1.0f
 #define kMouseLeft          0
 #define kMouseRight         1
-
-// Input
-
-typedef pair<MapObject*, cocos2d::Sprite*> ObjectSprite;
-typedef pair<Astronaut*, cocos2d::Sprite*> AstronautSprite;
 
 class SCGame : public cocos2d::Layer
 {
@@ -33,9 +30,8 @@ public:
     
     // Variables
     Map map;                                        // Contains the map
-    vector<ObjectSprite> objectSpritePairs;
-    vector<AstronautSprite> astronautSpritePairs;
-    vector<AstronautSprite> astronautRosterPairs;
+    vector<ObjectSprite*> objectSprites;
+    vector<AstronautSprite*> astronautSprites;
     
     // UI elements
     cocos2d::Sprite *tileSprites[MAP_XS][MAP_YS];   // Created sprites will be stored here for map update purposes
@@ -44,24 +40,19 @@ public:
     cocos2d::Layer *mapLayer;
     cocos2d::Layer *uiLayer;
     
-    YUIView *panelView;
-    YUILabel *panelLabel;
-    
     // Map interface functions
-    void generateObjectSprites();
-    void generateSpriteTupleForObject(MapObject *ob);
+    void generateSpriteObject(MapObject *ob);
     
     // Astronaut display functinos
-    void generateAstronautSprites();
-    void generateSpriteTupleForAstronaut(Astronaut *astronaut);
-    void updateSpriteTuple(AstronautSprite *os);
+    void generateSpriteAstronaut(Astronaut *astronaut);
+    void updateAstronautSprite(AstronautSprite *os);
     
     // Functions
     void tick(float time);                                    // Performs game logic
     
     // UI Functions
-    void updateAstronautSelection();
     void centerMapOn(int x, int y);
+    void selectAstronaut(AstronautSprite *os);
     
     // Keyboard Input
     void keyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);

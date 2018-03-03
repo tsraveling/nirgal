@@ -20,6 +20,14 @@
 		0340F60E203247C500D166EC /* AstronautDesign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F60C203247C500D166EC /* AstronautDesign.cpp */; };
 		0340F60F203247C500D166EC /* AstronautDesign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0340F60C203247C500D166EC /* AstronautDesign.cpp */; };
 		0340F610203247C500D166EC /* AstronautDesign.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0340F60D203247C500D166EC /* AstronautDesign.hpp */; };
+		034D29E2204B31F800AFE0F9 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = 034D29E1204B31F800AFE0F9 /* ui */; };
+		034D29E3204B31F800AFE0F9 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = 034D29E1204B31F800AFE0F9 /* ui */; };
+		034D29E7204B392200AFE0F9 /* AstronautSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 034D29E5204B392200AFE0F9 /* AstronautSprite.cpp */; };
+		034D29E8204B392200AFE0F9 /* AstronautSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 034D29E5204B392200AFE0F9 /* AstronautSprite.cpp */; };
+		034D29E9204B392200AFE0F9 /* AstronautSprite.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 034D29E6204B392200AFE0F9 /* AstronautSprite.hpp */; };
+		034D29EC204B45D800AFE0F9 /* ObjectSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 034D29EA204B45D800AFE0F9 /* ObjectSprite.cpp */; };
+		034D29ED204B45D800AFE0F9 /* ObjectSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 034D29EA204B45D800AFE0F9 /* ObjectSprite.cpp */; };
+		034D29EE204B45D800AFE0F9 /* ObjectSprite.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 034D29EB204B45D800AFE0F9 /* ObjectSprite.hpp */; };
 		036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 036BAA2A201413560021EE81 /* AstronautRoute.cpp */; };
 		0395B9432009749400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
 		0395B945200979C400EE31E2 /* Astronaut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0395B9412009749400EE31E2 /* Astronaut.cpp */; };
@@ -149,6 +157,11 @@
 		0340F6062032471E00D166EC /* ObjectInteraction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectInteraction.hpp; sourceTree = "<group>"; };
 		0340F60C203247C500D166EC /* AstronautDesign.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautDesign.cpp; sourceTree = "<group>"; };
 		0340F60D203247C500D166EC /* AstronautDesign.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautDesign.hpp; sourceTree = "<group>"; };
+		034D29E1204B31F800AFE0F9 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
+		034D29E5204B392200AFE0F9 /* AstronautSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautSprite.cpp; sourceTree = "<group>"; };
+		034D29E6204B392200AFE0F9 /* AstronautSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautSprite.hpp; sourceTree = "<group>"; };
+		034D29EA204B45D800AFE0F9 /* ObjectSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectSprite.cpp; sourceTree = "<group>"; };
+		034D29EB204B45D800AFE0F9 /* ObjectSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectSprite.hpp; sourceTree = "<group>"; };
 		036BAA2A201413560021EE81 /* AstronautRoute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AstronautRoute.cpp; sourceTree = "<group>"; };
 		036BAA2B201413560021EE81 /* AstronautRoute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AstronautRoute.hpp; sourceTree = "<group>"; };
 		0395B9412009749400EE31E2 /* Astronaut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Astronaut.cpp; sourceTree = "<group>"; };
@@ -320,6 +333,17 @@
 			name = Terrains;
 			sourceTree = "<group>";
 		};
+		034D29E4204B391600AFE0F9 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				034D29EA204B45D800AFE0F9 /* ObjectSprite.cpp */,
+				034D29EB204B45D800AFE0F9 /* ObjectSprite.hpp */,
+				034D29E5204B392200AFE0F9 /* AstronautSprite.cpp */,
+				034D29E6204B392200AFE0F9 /* AstronautSprite.hpp */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
 		03A53A701FDB3CB50053F265 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +365,7 @@
 		03A53A731FDB3CED0053F265 /* Main Game */ = {
 			isa = PBXGroup;
 			children = (
+				034D29E4204B391600AFE0F9 /* GUI */,
 				03A53A7B1FDB3D390053F265 /* SCGame.cpp */,
 				03A53A7C1FDB3D390053F265 /* SCGame.h */,
 			);
@@ -491,6 +516,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				034D29E1204B31F800AFE0F9 /* ui */,
 				03C9E311202F877D00FDB02C /* content */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 			);
@@ -566,7 +592,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034D29EE204B45D800AFE0F9 /* ObjectSprite.hpp in Headers */,
 				0340F610203247C500D166EC /* AstronautDesign.hpp in Headers */,
+				034D29E9204B392200AFE0F9 /* AstronautSprite.hpp in Headers */,
 				0340F6092032471E00D166EC /* ObjectInteraction.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -674,6 +702,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034D29E2204B31F800AFE0F9 /* ui in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
@@ -702,6 +731,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034D29E3204B31F800AFE0F9 /* ui in Resources */,
 				03C9E313202F877E00FDB02C /* content in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
@@ -719,6 +749,7 @@
 				03A53A7D1FDB3D390053F265 /* SCGame.cpp in Sources */,
 				03C9E30A202CDFD000FDB02C /* YUIView.cpp in Sources */,
 				033F035F200D681100E5ED63 /* AstronautAction.cpp in Sources */,
+				034D29E7204B392200AFE0F9 /* AstronautSprite.cpp in Sources */,
 				036BAA2C201413560021EE81 /* AstronautRoute.cpp in Sources */,
 				0340F6072032471E00D166EC /* ObjectInteraction.cpp in Sources */,
 				033F035A200D621000E5ED63 /* AstronautGoal.cpp in Sources */,
@@ -733,6 +764,7 @@
 				03CCBAA61FF415CD001D30F4 /* FractalNoise.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				03C568BF1FE1D1F400DA7D6A /* Map.cpp in Sources */,
+				034D29EC204B45D800AFE0F9 /* ObjectSprite.cpp in Sources */,
 				03CCBAA81FF415CD001D30F4 /* Perlin.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
@@ -758,7 +790,9 @@
 				033F0361200D6F1B00E5ED63 /* AstronautGoal.cpp in Sources */,
 				0340F6082032471E00D166EC /* ObjectInteraction.cpp in Sources */,
 				03C9E310202CF13C00FDB02C /* YUILabel.cpp in Sources */,
+				034D29E8204B392200AFE0F9 /* AstronautSprite.cpp in Sources */,
 				033F0360200D6F1800E5ED63 /* AstronautAction.cpp in Sources */,
+				034D29ED204B45D800AFE0F9 /* ObjectSprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

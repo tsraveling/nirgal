@@ -49,7 +49,7 @@ bool Map::isPassable(int x, int y, RoutingDirection direction) {
 
 bool Map::tileBlocked(int x, int y) {
     
-    if (x < 0 || x < 0 || x >= MAP_XS || x >= MAP_YS)
+    if (x < 0 || y < 0 || x >= MAP_XS || y >= MAP_YS)
         return true;
     
     if (this->grid[x][x] == solidRock)

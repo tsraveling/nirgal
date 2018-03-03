@@ -26,7 +26,6 @@ public:
     int x, y;
     string name;
     bool isSuited;
-    bool isSelected;
     
     // AI variables
     vector<AstronautGoal*> immediateGoals;                  // This contains everything the astronaut is immediately intending to do
