@@ -15,7 +15,7 @@
                 <key>spriteSourceSize</key>
                 <string>{128,128}</string>
                 <key>textureRect</key>
-                <string>{{2,2},{128,128}}</string>
+                <string>{{1,1},{128,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -30,22 +30,7 @@
                 <key>spriteSourceSize</key>
                 <string>{128,128}</string>
                 <key>textureRect</key>
-                <string>{{2,133},{128,128}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>ground_pavement.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{128,128}</string>
-                <key>spriteSourceSize</key>
-                <string>{128,128}</string>
-                <key>textureRect</key>
-                <string>{{2,264},{128,128}}</string>
+                <string>{{1,131},{128,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -60,7 +45,22 @@
                 <key>spriteSourceSize</key>
                 <string>{128,128}</string>
                 <key>textureRect</key>
-                <string>{{2,395},{128,128}}</string>
+                <string>{{1,261},{128,128}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>rock_interior.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{128,128}</string>
+                <key>spriteSourceSize</key>
+                <string>{128,128}</string>
+                <key>textureRect</key>
+                <string>{{1,391},{128,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -71,11 +71,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{34,34}</string>
+                <string>{18,18}</string>
                 <key>spriteSourceSize</key>
                 <string>{128,128}</string>
                 <key>textureRect</key>
-                <string>{{2,563},{34,34}}</string>
+                <string>{{131,131},{18,18}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -86,13 +86,13 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{34,128}</string>
+                <string>{18,128}</string>
                 <key>spriteSourceSize</key>
                 <string>{128,128}</string>
                 <key>textureRect</key>
-                <string>{{2,526},{34,128}}</string>
+                <string>{{131,1},{18,128}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
         </dict>
         <key>metadata</key>
@@ -106,9 +106,9 @@
             <key>realTextureFileName</key>
             <string>terrain.png</string>
             <key>size</key>
-            <string>{132,599}</string>
+            <string>{150,520}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:56896e6c0ad047bdd9ca17a855209307:5fc7eef24170c140de43cfe3a835e2b3:abfad418824586571e33008575221999$</string>
+            <string>$TexturePacker:SmartUpdate:b6b0a8e0d50ac911ad1732b586e935e5:c8572879889e35cbdb4fd8987cb1b407:abfad418824586571e33008575221999$</string>
             <key>textureFileName</key>
             <string>terrain.png</string>
         </dict>

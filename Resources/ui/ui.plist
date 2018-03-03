@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>astronaut_selected.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{150,150}</string>
+                <key>spriteSourceSize</key>
+                <string>{150,150}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{150,150}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>ui.png</string>
+            <key>size</key>
+            <string>{152,152}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:d0622ea324aad5da17286761dcf1f232:28bcb79caa7e2b81d2e13c949b16bdc6:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <key>textureFileName</key>
+            <string>ui.png</string>
+        </dict>
+    </dict>
+</plist>
