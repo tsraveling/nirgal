@@ -29,5 +29,31 @@ ObjectDesign* ObjectDesign::objectDesignForNode(YAML::Node node) {
     if (width != NULL)
         design->width = width.as<int>();
     
+    // Get the list of interactions if there is one
+    auto interactions = node["interactions"];
+    if (interactions != NULL) {
+        
+        assert(interactions.IsMap());
+        
+        // Now go through the subsets of the manifest and load those files
+        for (YAML::const_iterator iterator = interactions.begin(); iterator != interactions.end(); ++iterator) {
+            
+            // Get the key for the astronaut
+            auto interaction_key = iterator->first.as<string>();
+            
+            // Get the node for the astronaut's contents
+            auto interaction_node = iterator->second.as<YAML::Node>();
+            
+            ObjectInteraction* interaction = ObjectInteraction::objectInteractionForNode(interaction_node);
+            
+            if (interaction != NULL) {
+                
+                interaction->key = interaction_key;
+                printf(" > Adding interaction: %s\n",interaction_key.c_str());
+                design->interactions.push_back(interaction);
+            }
+        }
+    }
+    
     return design;
 }

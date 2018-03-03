@@ -25,7 +25,7 @@ public:
     string name;
     string baseSpriteName;
     
-    vector<ObjectInteraction> interactions;
+    vector<ObjectInteraction*> interactions;
     
     ObjectDesign();
     

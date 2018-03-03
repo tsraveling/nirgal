@@ -16,12 +16,14 @@ objects:
         type: suitUp
         duration: 30.0
         position: 0, 1
+        transport: 0, 0
       suit-down:
         name: Take off spacesuit
         description: Get out of your spacesuit and back into a pressurized environment
         type: suitDown
         duration: 30.0
         position: 0, 0
+        transport: 0, 1
   lander-crate:
     name: Cargo Container
     sprite: crate.png
